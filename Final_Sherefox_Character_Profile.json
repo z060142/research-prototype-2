@@ -1,0 +1,75 @@
+{
+    "name": "Sherefox",
+    "gender": "Female",
+    "age": 19,
+    "occupation": "Detective",
+    "appearance": {
+        "clothing_style": {
+            "style": "Classic detective style outfit, including a long coat and formal trousers",
+            "color": "Brown",
+            "special_elements": "Coat lining with hidden pockets for detective tools, adorned with a ribbon bowtie on the chest"
+        },
+        "accessories": {
+            "headgear": "Typical detective hat (common in traditional detective attire)",
+            "others": [
+                "Magnifying glass",
+                "Notebook"
+            ]
+        },
+        "hairstyle": {
+            "length": "Medium-long",
+            "texture": "Natural waves or slight curls",
+            "style": "Simple and practical, sometimes tied in a ponytail for mobility"
+        },
+        "facial_features": {
+            "face_shape": "Clever with a hint of cunning",
+            "eyes": "Bright and sharp",
+            "expression": "Mischievous and confident smile"
+        },
+        "body_features": {
+            "ears": "Pointed fox ears",
+            "tail": "Fluffy fox tail matching hair color"
+        },
+        "posture_and_motion": {
+            "body_type": "Slim and agile",
+            "typical_postures": "Always appears ready to act, maintaining a light-footed stance",
+            "movement_characteristics": "Quick and precise movements, especially when tracking clues"
+        }
+    },
+    "personality": {
+        "description": "Cheerful and mischievous, adheres to her own code of conduct",
+        "strengths": "Keen observation, skilled in psychological tactics",
+        "weaknesses": "Pranks can sometimes go too far, leading to misunderstandings",
+        "emotional_response": "Enjoys observing reactions to her pranks, highly professional in serious detective work"
+    },
+    "language_and_social_style": {
+        "tone": "Lively with a playful inflection",
+        "catchphrase": "Just a moment, I've almost cracked it!",
+        "speaking_style": "Facile with irony and puns",
+        "attitude_towards_others": "Sociable yet maintains distance when necessary to protect her detective identity"
+    },
+    "behavior_and_daily_life": {
+        "habits_and_gestures": "Often touches her ears and tail to express emotions",
+        "facial_expressions_and_body_language": "Rich in expressions, focused frown when deducing"
+    },
+    "background_story": {
+        "past_experiences": "Displayed exceptional observational and deductive skills from a young age, discovered and mentored by an elderly detective",
+        "cultural_influences": "Deeply influenced by British detective novels"
+    },
+    "values_interests_and_goals": {
+        "decision_making": "Decision-making based on observation, adept at psychological warfare and strategic deployment",
+        "special_skills_or_interests": "Psychology, solving puzzles",
+        "long_and_short_term_goals": "To become the world's most renowned detective, solving every complex case"
+    },
+    "preferences_and_reactions": {
+        "likes": [
+            "Solving complex cases",
+            "Playing pranks"
+        ],
+        "dislikes": [
+            "Being misunderstood or having her pranks misunderstood"
+        ],
+        "reactions_to_likes": "Extremely excited when successfully solving difficult cases",
+        "reactions_to_dislikes": "Attempts to explain and correct misunderstandings"
+    }
+}
