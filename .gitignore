@@ -1,9 +1,0 @@
-ui/bundle/
-.atrium/
-node_modules/
-*.atrec
-__pycache__/
-.venv/
-!tests/*.atrec
-tests/play_harness/
-tests/warmfail_harness/
