@@ -13,6 +13,7 @@
 | `gdd_parts/systems.md` | 系統規格的本地鏡像，與線上「系統規格」分頁同步 |
 | `gdd_parts/numbers.md` | 數值總表的工作稿 |
 | `gdd_parts/consistency_report.md` | 早期跨章一致性審查（歷史紀錄，所列問題已在主文件處理） |
+| `staging/` | 非文字的演出指令：Ch.1-3 場景配樂表 `bgm_cues_ch01-03.csv`（說明見 `staging/README.md`） |
 | `localization/` | Ch.1-3 原型的中英對照表（zh-TW ↔ en）與 `strings.json`；說明見 `localization/README.md` |
 | `images/` | 去背角色立繪、論戰對手、書法字 cut-in（論破／破竹／困獸／失守）、報紙美術風格樣張 |
 | `gdd.md` | 初版 GDD 草稿 v1.0（歷史紀錄，已由主文件取代） |
