@@ -31,3 +31,27 @@
 
 * 字串 ID 在 CSV 與 `strings.json` 中一一對應。
 * 論戰的書法大字（論破、破竹、困獸、失守等）在中英兩種語言下都維持中文。
+
+## 遊戲原型（Ch.1～3 可玩）
+
+本 repo 同時是遊戲專案：以 [XTAtrium](https://github.com/z060142/XTAtrium) 執行遊戲邏輯（Atrium Script 流程圖、資料表），全部畫面用 XTFrame UI。
+
+| 路徑 | 內容 |
+| --- | --- |
+| `game.json` | 專案根（XTAtrium 0.4） |
+| `flows/` | 流程圖（由 `tools/gen_flows.py`、`tools/gen_debui.py`、`tools/gen_debate.py` 產生，不要手改） |
+| `data/`、`strings/` | 資料表與遊戲字串（由 `tools/build_data.py` 產生） |
+| `ui/boards/` → `ui/project/` | UI 原稿（.dc.html）與 XTFrame UI 專案；`ui/bundle/` 為打包產物，不進版控 |
+| `ref/` | 論戰規則的 Python 參考模型（黃金軌跡） |
+| `tests/` | 錄製重播與比對檢查 |
+| `docs/architecture.md`、`docs/flows.md`、`docs/debate-engine.md`、`docs/ui-contracts.md`、`docs/data-schema.md`、`docs/rulings.md` | 實作文件 |
+
+執行（需先用 XTAtrium 的 `tools/install-sdk.ps1` 建好 SDK）：
+
+```
+xtatrium pack --game .
+xtatrium play --game .
+xtatrium publish --game . --out <輸出目錄>
+```
+
+資料與檢查：`uv run tools/build_data.py`、`uv run tests/check_playthrough.py` 等，見 `tests/README.md`。
