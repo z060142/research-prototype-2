@@ -1846,6 +1846,8 @@
 | UI_SET_VOL_ENV | 設定項目 | 環境音 |
 | UI_SET_VOICE_CHAR | 設定項目 | 角色語音 |
 | UI_SET_RES | 設定項目 | 解析度 |
+| UI_SET_RES_AUTO | 設定選項（解析度預設：跟隨視窗大小） | 自動（跟隨視窗） |
+| UI_SET_RES_CURRENT | 解析度項目下的說明；{w} {h} = 實際渲染解析度 | 目前：{w} × {h} |
 | UI_SET_WINDOW | 設定項目 | 顯示模式 |
 | UI_SET_WINDOW_FULL | 設定選項 | 全螢幕 |
 | UI_SET_WINDOW_WIN | 設定選項 | 視窗 |
