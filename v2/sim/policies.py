@@ -62,6 +62,16 @@ class Careful(Policy):
     name = "careful"
     soph_share = 0.0
 
+    def finish_move(self, d):
+        """Attach now if that completes a 論破 inside the 破防 window."""
+        return self.argue_proper(d)
+
+    def can_finish(self, d):
+        if d.broken <= 0:
+            return False
+        have = d.chain_issues()
+        return len(d.player.chain) + 1 >= d.ronpa_len and (len(have) >= 2 or len(have) == 1)
+
     def attack_response(self, d, card):
         belief = self.judge_truth(d, card)
         if belief == "lie_covered":
@@ -81,6 +91,12 @@ class Careful(Policy):
                     return {"kind": "dismantle", "node": n, "soph": False}
                 return self.argue_proper(d) or {"kind": "stall"}
             return {"kind": "stall"}
+        if self.can_finish(d):
+            if d.catch_issue is not None:
+                return {"kind": "catch"}
+            m = self.finish_move(d)
+            if m is not None:
+                return m
         if d.catch_issue is not None:
             return {"kind": "catch"}
         if seen == "attack" and card is not None:
@@ -150,6 +166,10 @@ class Sophist(Careful):
                     return {"kind": "dismantle", "node": n, "soph": not (n.card.kind == "lie" and n.card.covered)}
                 return self.argue_proper(d) or {"kind": "stall"}
             return {"kind": "stall"}
+        if self.can_finish(d):
+            if d.catch_issue is not None:
+                return {"kind": "catch"}
+            return self.argue_soph(d) if r.random() < self.soph_argue else (self.argue_proper(d) or self.argue_soph(d))
         if d.catch_issue is not None:
             return {"kind": "catch"}
         if seen == "attack" and card is not None:

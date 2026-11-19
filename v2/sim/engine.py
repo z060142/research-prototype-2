@@ -103,6 +103,7 @@ class Debate:
         self.weights = o.get("weights", a["weights"])
         self.rage = a["rage"]
         self.weakness = o["weakness"]
+        self.lock = o.get("lock", False) and P.USE_LOCK_FLAGS   # 論破前可信度不會低於 1（提案）
         self.sore = o.get("sore", 0.0)       # chance a 正論 touches his 心結 (scripted, 8.2)
 
         self.player = Side(st["player_hp"], st["player_hp"])
@@ -543,9 +544,11 @@ class Debate:
         self.last_player_soph = used_soph
         if o_attached is False and act in (ATTACK, FORCE) and kind != "intercept":
             pass
+        if p_attached:
+            read_ok = True                  # 7.2: 接上 counts as a correct read, clash included
         if read_ok:
             self.hachiku = min(P.HACHIKU_MAX, self.hachiku + 1)
-        elif read_bad or (act in (ATTACK, FORCE) and kind in ("argue", "catch", "psych")):
+        elif read_bad:
             self.hachiku = 0
         if self.shisshu_next:
             self.hachiku = 0
@@ -596,7 +599,7 @@ class Debate:
         if ronpa:
             return self.on_ronpa()
         if op.hp <= 0:
-            if P.GRIND_LOCK and not self.ronpa_done:
+            if (P.GRIND_LOCK or self.lock) and not self.ronpa_done:
                 op.hp = 1.0                      # proposed fix: no win without 論破
                 return None
             return self.finish(True, "reversed_win" if self.reversed else "grind")

@@ -41,6 +41,7 @@ PLAYER_COMEBACK_HP = 0.30    # 7.5 玩家最後一張牌成功後回復到 30%
 MAX_ROUNDS = 20              # 超過即判玩家論敗（旁觀者散場）
 SOPH_INTERCEPT_DMG = 20.0    # as written: same as 正論截斷 (proposed fix: 10)
 SOPH_INTERCEPT_BREAKS = True # as written: 詭辯截斷 also causes 破防 (proposed fix: False)
+USE_LOCK_FLAGS = True        # proposed fix: per-opponent `lock` flag (v1 precedent: rivals and late opponents locked at 1)
 GRIND_LOCK = False           # proposed fix (not in the rules): opponent cannot drop below 1 before 論破
 
 # ---------------------------------------------------------------- 8.2 events
@@ -64,11 +65,11 @@ FEW_OPTIONS_AT = 2           # 選項所剩無幾：可用選項 ≤ 2
 # ---------------------------------------------------------------- 5 / 7.3 stages
 STAGES = {
     #           player HP, ronpa threshold, opp base dmg, tell clarity (clear, vague, disguise)
-    "early": dict(player_hp=100, ronpa_len=3, opp_base=14.0, clarity=(0.60, 0.40, 0.00),
+    "early": dict(player_hp=100, ronpa_len=3, opp_base=17.0, clarity=(0.60, 0.40, 0.00),
                   hand=dict(lie=3, fav=2, unfav=1), false_share=0.15, refute_hidden=0.6),
     "mid":   dict(player_hp=120, ronpa_len=4, opp_base=15.0, clarity=(0.45, 0.45, 0.10),
                   hand=dict(lie=4, fav=2, unfav=2), false_share=0.20, refute_hidden=0.7),
-    "late":  dict(player_hp=150, ronpa_len=5, opp_base=18.0, clarity=(0.30, 0.45, 0.25),
+    "late":  dict(player_hp=150, ronpa_len=4, opp_base=18.0, clarity=(0.30, 0.45, 0.25),
                   hand=dict(lie=5, fav=3, unfav=2), false_share=0.25, refute_hidden=0.8),
 }
 PROPER_POOL = {"early": 5, "mid": 6, "late": 7}   # 玩家可用的正論說法數（3 個爭點平均分）
@@ -95,7 +96,7 @@ ARCHETYPES = {
                   weights=(40, 25, 20, 15), rage=0.7),
     "mastermind": dict(name="冷靜的主謀", start=(0, 0, 0), thr=(85, 95, 85), decay=(2, 2, 2),
                        scale=(0.4, 0.3, 0.4), override={"few_options": (0, 0, 0)},
-                       weights=(35, 15, 30, 20), rage=0.5),
+                       weights=(40, 15, 25, 20), rage=0.5),
 }
 
 # ---------------------------------------------------------------- opponents
@@ -110,16 +111,16 @@ OPPONENTS = {
                      weakness=(25, 10, 0), last_card=False, key_lie=True),
     "pierce":   dict(name="皮爾斯（Ch.3）", stage="early", arch="veteran", hp=140, sore=0.10,
                      weakness=(10, 20, 5), last_card=False, key_lie=True),
-    "mid_expert":  dict(name="中期：自信的專家", stage="mid", arch="expert", hp=190, sore=0.06, disguise=True,
+    "mid_expert":  dict(name="中期：自信的專家", stage="mid", arch="expert", hp=190, sore=0.06, lock=True, disguise=True,
                         weakness=(15, 5, 15), last_card=True, key_lie=True),
     "mid_noble":   dict(name="中期：易怒的權貴", stage="mid", arch="noble", hp=190, sore=0.10,
                         weakness=(10, 5, 25), last_card=False, key_lie=True),
     "mid_veteran": dict(name="中期：老練的慣犯", stage="mid", arch="veteran", hp=190, sore=0.08,
                         weakness=(15, 15, 5), last_card=True, key_lie=True),
-    "late_noble":  dict(name="後期：易怒的權貴", stage="late", arch="noble", hp=260, sore=0.08,
+    "late_noble":  dict(name="後期：易怒的權貴", stage="late", arch="noble", hp=260, sore=0.08, lock=True,
                         weakness=(10, 5, 20), last_card=True, key_lie=True),
-    "wolfhart": dict(name="Wolfhart（終局）", stage="late", arch="mastermind", hp=230, sore=0.03, disguise=True,
-                     clarity=(0.25, 0.45, 0.30),
+    "wolfhart": dict(name="Wolfhart（終局）", stage="late", arch="mastermind", hp=230, lock=True, sore=0.03, disguise=True,
+                     clarity=(0.30, 0.45, 0.25),
                      weakness=(5, 5, 0), last_card=True, key_lie=False),
 }
 STAGE_SCENARIOS = {
@@ -134,14 +135,14 @@ STAGE_SCENARIOS = {
 # coverage: chance to hold a refuting 正論 for a given opponent lie, per stage
 # picked: expected number of evidence items the opponent picks up (Poisson-ish)
 SKILL = {
-    "careful":  dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.60),
+    "careful":  dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.65),
                      key_cover=0.85, counter=0.55, picked=0.3, noise=0.03),
-    "careless": dict(read=(0.85, 0.55, 0.20), truth=0.60, coverage=dict(early=0.60, mid=0.50, late=0.45),
-                     key_cover=0.60, counter=0.25, picked=1.2, noise=0.25),
-    "sophist":  dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.60),
+    "careless": dict(read=(0.90, 0.60, 0.25), truth=0.65, coverage=dict(early=0.60, mid=0.55, late=0.50),
+                     key_cover=0.60, counter=0.25, picked=1.2, noise=0.20),
+    "sophist":  dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.65),
                      key_cover=0.85, counter=0.55, picked=0.3, noise=0.03),
     "staller":  dict(read=(0.80, 0.50, 0.15), truth=0.55, coverage=dict(early=0.55, mid=0.45, late=0.40),
                      key_cover=0.55, counter=0.25, picked=1.2, noise=0.10),
-    "psych":    dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.60),
+    "psych":    dict(read=(1.0, 0.75, 0.65), truth=0.80, coverage=dict(early=0.75, mid=0.65, late=0.65),
                      key_cover=0.85, counter=0.55, picked=0.5, noise=0.03),
 }
