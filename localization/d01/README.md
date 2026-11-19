@@ -11,7 +11,7 @@ All files are UTF-8 (CSV files have a BOM).
 | 1 | Everything the debate needs: claims, opponent cards, cut/refute/contradiction/link lines, reactions, tells, state lines, system templates, situational beats, warm-up (S04) and debate framing (S07) | done |
 | 2 | Investigation: evidence, hotspots, person notes, observations, appraisals, carry screen (S05/S06) | done |
 | 3 | Story scenes: S01–S03, S08–S11, and scene headings `SCR_D01_Sxx_TITLE` | done |
-| 4 | English column for every row | pending |
+| 4 | English column for every row, final CSV ↔ JSON check | done |
 
 ## Files
 
@@ -63,4 +63,23 @@ All files are UTF-8 (CSV files have a BOM).
 
 * Outer 「」 around whole-line quotes are removed; quotes inside a sentence are kept (the speaker column carries who speaks). Stage directions in （） are kept in zh-TW and become ( ) in en.
 * Condition markers 〔…〕 from the chapter are moved to the note (`cond: …`).
-* en is empty until push 4.
+* English follows the v1 voice rules (British spelling; Sherefox playful, Arthur earnest, Baskerville pompous with "this Inspector" and "Miss Fox"). Cedric is formal and condescending.
+* Terms follow `ui_strings_d01.csv`: Credibility, Sound / Sophistry, Argue, Rebut, Cut In, Knock Down, Muddy the Waters, Assert / Press / Sidestep, Guard Down, Seize His Words, Mind Game, Endgame, His Last Card, last gasp, Cover.
+* Names: Sherefox addresses Cedric as "Mr Cedric", because "Mr Hyde" is the dead man. Aunt / Uncle for 嬸嬸 / 叔叔.
+* 通靈板 / 靈應盤 = "talking board", never "Ouija" (that trademark dates from 1890; the chapter is set in 1888). 指示板 = planchette.
+* 九點四十分 is "twenty to ten" in speech and prose; clock readings keep digits.
+
+## Source fixes made during the English pass
+
+Designer notes that had slipped into displayed text were moved to the note column (in both the chapter and the CSVs):
+* SCR_D01_S04_L002/L006/L009 (correct answer), S04_L013, S04_L014, S08_L002 (regard and appraisal effects), S06_L011 (rule reference), S07_L009 (「垂死反撲」 marker).
+* E_D01_12_DESC (「沒有用」), PN_D01_3_TEXT (completion hint), CUT_D01_03A_L1 (design note), HS_D01_12_ART (where the codicil is found), HS_D01_08/09/15_ART (「可鑑定」 marker).
+
+Other fixes:
+* SCR_D01_S06_L002 and S06_L009 are now templates (`{max}`, `{n}`, `{list}`).
+* REFUTE_D01_06B now says the handkerchief carries the cook's initial, matching E_D01_07.
+* HS_D01_23_DESC: the demand letter is addressed to 塞德里克・海德先生 ("C. Hyde, Esq."), not the late Mr Hyde.
+
+## Check
+
+Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears in `v2/11_demo_chapter.md`. Every en string keeps its zh-TW placeholder set, and no en string is empty.
