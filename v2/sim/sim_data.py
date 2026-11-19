@@ -173,6 +173,8 @@ def main():
     ap.add_argument("--appraisals", type=int, default=None, help="override appraisal_limit")
     ap.add_argument("--hp", type=float, default=None, help="override opponent hp")
     ap.add_argument("--dmg", type=float, default=None, help="override opponent base_damage")
+    ap.add_argument("--notes", choices=["known", "missed", "all"], default="known",
+                    help="optional_known notes: all found (default), all missed, or every subset")
     a = ap.parse_args()
 
     ov = {}
@@ -180,7 +182,7 @@ def main():
         ov["carry_limit"] = a.carry
     if a.appraisals is not None:
         ov["appraisal_limit"] = a.appraisals
-    d, need, rows, errs = check(a.path, override=ov or None)
+    d, need, rows, errs = check(a.path, override=ov or None, notes=a.notes)
     _, ev, cards, claims, appr, brk, _ = load(a.path)
     notes = []
     base = base_overrides(d, notes)

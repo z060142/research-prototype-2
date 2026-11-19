@@ -101,6 +101,7 @@ uv run python carry_sweep.py ../demo/debate_data.json --limits 11 10 9 8 7 --app
 | `max_pickup` | 否 | 對手最多撿幾件，預設 2 |
 | `issues` | 是 | `[{id, name}]`，3 個 |
 | `always_known` | 否 | 不佔名額、一定拿得到的觀察與人物筆記 ID（例 `O12`、`PN1`） |
+| `optional_known` | 否 | 不佔名額、但玩家可能錯過的筆記：`[{id, hotspots}]`。`check45.py` 預設檢查每一種「錯過哪幾條」的組合（`--notes all`）；`--notes known`／`missed` 只看全拿到／全錯過。`sim_data.py`、`carry_sweep.py` 預設全拿到 |
 | `evidence` | 是 | 見下 |
 | `appraisals` | 否 | 見下 |
 | `claims` | 是 | 每個說法一筆，見下 |

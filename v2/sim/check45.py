@@ -127,7 +127,7 @@ def has_route(safe, claims, need):
     return best
 
 
-def check(path, all_sizes=False, override=None):
+def check(path, all_sizes=False, override=None, notes="all"):
     d, ev, cards, claims, appr, brk, errs = load(path)
     if override:
         d.update(override)
@@ -138,6 +138,13 @@ def check(path, all_sizes=False, override=None):
     maxp = d.get("max_pickup", 2)
     prio = d["opponent"].get("pickup_priority") or [e["id"] for e in d["evidence"] if e.get("opponent_use")]
     always = set(d.get("always_known", []))
+    optional = [o["id"] if isinstance(o, dict) else o for o in d.get("optional_known", [])]
+    if notes == "known":
+        note_sets = [tuple(optional)]
+    elif notes == "missed":
+        note_sets = [()]
+    else:                                  # every subset: the player may miss any of them
+        note_sets = [c for k in range(len(optional) + 1) for c in itertools.combinations(optional, k)]
     own_facts = {c["id"] for c in d["opponent"]["cards"] if c["kind"] in ("fav", "unfav")}
     lies = [c["id"] for c in d["opponent"]["cards"] if c["kind"] == "lie"]
     keystone = [c["id"] for c in d["opponent"]["cards"] if c.get("keystone")]
@@ -155,8 +162,8 @@ def check(path, all_sizes=False, override=None):
             held_cards = [ev[e]["opponent_use"] for e in picked]
             held = set(picked) | own_facts
             for k in range(0, min(alim, len(appraisable)) + 1):
-                for done in itertools.combinations(appraisable, k):
-                    known = always | cset | set(done)
+                for done, nset in itertools.product(itertools.combinations(appraisable, k), note_sets):
+                    known = always | cset | set(done) | set(nset)
                     for e in carry:
                         known |= set(ev[e].get("grants", []))
                     avail = [c for c in claims.values()
@@ -170,6 +177,7 @@ def check(path, all_sizes=False, override=None):
                     pick_lie = [c for c in held_cards if cards[c].get("as") == "lie" and c not in cuts]
                     rows.append(dict(
                         carry=list(carry), appraise=list(done), picked=held_cards,
+                        notes=list(nset), missed=[x for x in optional if x not in nset],
                         ok=bool(route), route=route,
                         safe=len(safe), proper=len(proper),
                         clean=bool(route) and not picked,
@@ -189,13 +197,16 @@ def main():
     ap.add_argument("--all-sizes", action="store_true", help="also loadouts that carry fewer than carry_limit")
     ap.add_argument("--md", default=None)
     ap.add_argument("--verbose", action="store_true", help="list every loadout")
+    ap.add_argument("--notes", choices=["all", "known", "missed"], default="all",
+                    help="optional_known: every subset (default), all known, or all missed")
     a = ap.parse_args()
-    d, need, rows, errs = check(a.path, a.all_sizes)
+    d, need, rows, errs = check(a.path, a.all_sizes, notes=a.notes)
     fails = [r for r in rows if not r["ok"]]
     weak = [r for r in rows if r["ok"] and r["cuts"] == 0]
     bad = fails + weak
     out = [f"# 4.5 檢查：{d.get('id', a.path)}", "",
-           f"* 論破門檻 {need}；攜帶上限 {d.get('carry_limit')}；鑑定上限 {d.get('appraisal_limit')}；對手最多撿 {d.get('max_pickup', 2)} 件",
+           f"* 可錯過的筆記（optional_known）：{a.notes}；"
+           f"論破門檻 {need}；攜帶上限 {d.get('carry_limit')}；鑑定上限 {d.get('appraisal_limit')}；對手最多撿 {d.get('max_pickup', 2)} 件",
            f"* 帶法 × 鑑定組合：{len(rows)}；**沒有不靠詭辯的獲勝路線：{len(fails)}**；"
            f"有路線但沒有任何正論能截斷他的謊言（WEAK，也算失敗）：{len(weak)}",
            f"* 可能乾淨論破（等級一）：{sum(r['clean'] for r in rows)}；能截斷要害：{sum(r['cut_key'] for r in rows)}；"
@@ -206,11 +217,11 @@ def main():
     title = "全部組合" if a.verbose else "失敗與 WEAK 的組合"
     out += [f"## {title}", ""]
     if show:
-        out += ["| 結果 | 帶走 | 鑑定 | 對手撿到 | 安全正論數 | 範例路線 | 乾淨 | 截要害 | 截最後一張牌 | 只能詭辯打的撿來謊言 | 真相度上限 |",
-                "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+        out += ["| 結果 | 帶走 | 鑑定 | 漏掉的筆記 | 對手撿到 | 安全正論數 | 範例路線 | 乾淨 | 截要害 | 截最後一張牌 | 只能詭辯打的撿來謊言 | 真相度上限 |",
+                "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
         for r in show:
             tag = "FAIL" if not r["ok"] else ("WEAK" if r["cuts"] == 0 else "PASS")
-            out.append(f"| {tag} | {' '.join(r['carry'])} | {' '.join(r['appraise']) or '—'} | "
+            out.append(f"| {tag} | {' '.join(r['carry'])} | {' '.join(r['appraise']) or '—'} | {' '.join(r['missed']) or '—'} | "
                        f"{' '.join(r['picked']) or '—'} | {r['safe']} | {' '.join(r['route']) or '—'} | "
                        f"{'是' if r['clean'] else ''} | {'是' if r['cut_key'] else ''} | {'是' if r['counter'] else ''} | "
                        f"{' '.join(r['pick_lie']) or ''} | {r['truth_max']}% |")

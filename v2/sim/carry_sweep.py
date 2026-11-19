@@ -42,6 +42,7 @@ def main():
     ap.add_argument("--max-loadouts", type=int, default=1500)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--md", default=None)
+    ap.add_argument("--notes", choices=["known", "missed", "all"], default="known")
     a = ap.parse_args()
 
     _, ev, cards, claims, appr, brk, _ = load(a.path)
@@ -51,7 +52,7 @@ def main():
     details = []
     for lim in a.limits:
         for al in a.appraisals:
-            d, need, rows, errs = check(a.path, override={"carry_limit": lim, "appraisal_limit": al})
+            d, need, rows, errs = check(a.path, override={"carry_limit": lim, "appraisal_limit": al}, notes=a.notes)
             notes = []
             base = base_overrides(d, notes)
             fails = [r for r in rows if not r["ok"]]
