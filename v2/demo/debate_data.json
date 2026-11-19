@@ -966,6 +966,7 @@
         "priority: always > ② > ① > ④",
         "傾向約 50%"
       ],
+      "tendency": 0.5,
       "play_order": [
         "L1",
         "F1",
