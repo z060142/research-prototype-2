@@ -38,6 +38,7 @@ LASTCARD_HEAL_CAP = 0.45
 LASTCARD_ZERO_C_DMG = 20.0   # c = 0 但有牌可出
 PLAYER_COMEBACK_HP = 0.30    # 7.5 玩家最後一張牌成功後回復到 30%
 
+SHISSHU_UNTIL_READ = True    # 7.2 (0.4)：失守持續到下一次讀對；False ＝ 0.3 的一回合
 MAX_ROUNDS = 20              # 超過即判玩家論敗（旁觀者散場）
 SOPH_INTERCEPT_DMG = 20.0    # 詭辯截斷的傷害（規則：與正論截斷相同）
 SOPH_INTERCEPT_BREAKS = True # 詭辯截斷也造成破防（規則：是）
@@ -54,7 +55,6 @@ EVENTS = {
     "lie_down_proper": (20, 10, 0),
     "lie_down_soph": (12, 0, 12),
     "fact_down_soph": (5, 0, 20),
-    "intercepted": (12, 0, 8),
     "own_rebut_whiff": (8, 0, 12),
     "stalled": (0, 0, 10),
     "hit_player": (-10, 0, -8),

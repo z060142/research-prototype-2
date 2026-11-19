@@ -1,6 +1,6 @@
 # v2 論戰模擬
 
-依 `v2/00_core_rules.md`（草案 0.3）模擬一場論戰，用來定 `v2/01_numbers.md` 的數值。
+依 `v2/00_core_rules.md`（草案 0.4）模擬一場論戰，用來定 `v2/01_numbers.md` 的數值。
 
 ## 安裝與執行
 
@@ -37,6 +37,7 @@ uv run python run.py --n 4000 --md results.md --json results.json
 | `SOPH_INTERCEPT_DMG` | 20 | 詭辯截斷的傷害（規則：與正論截斷相同） |
 | `SOPH_INTERCEPT_BREAKS` | True | 詭辯截斷是否造成破防（規則：是） |
 | `MAX_ROUNDS` | 20 | 回合上限（Ch.1 亞瑟另設 8） |
+| `SHISSHU_UNTIL_READ` | True | 失守持續到下一次讀對（0.4）；False ＝ 只持續一回合（0.3） |
 
 規則詮釋（ASSUMPTION-xx）的完整清單見 `v2/01_numbers.md` 第 7 節。
 

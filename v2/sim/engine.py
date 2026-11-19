@@ -417,7 +417,9 @@ class Debate:
             for i in range(3):
                 self.psy[i] = max(0.0, self.psy[i] - P.DECAY[i] * self.decay[i])
                 self.over[i] = self.psy[i] >= self.thr[i]
-        self.shisshu, self.shisshu_next = self.shisshu_next, False
+        if self.shisshu_next:                 # 7.2 (0.4): 失守 lasts until the next correct read
+            self.shisshu = True
+            self.shisshu_next = False
         self.catch_issue, self.catch_next = self.catch_next, None
         self.opp_lost_node = False
         self.broken_at_start = self.broken > 0
@@ -709,6 +711,10 @@ class Debate:
                 ronpa = False
         if self.broken > 0:
             self.broken -= 1
+        if read_ok and self.shisshu and P.SHISSHU_UNTIL_READ:
+            self.shisshu = False                # ASSUMPTION-37: correct read = the 破竹 list
+        elif not P.SHISSHU_UNTIL_READ:
+            self.shisshu = False
 
         if rev:
             pl.hp = 1
