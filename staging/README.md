@@ -32,3 +32,4 @@ Same columns and rules as above, for the v2 demo chapter (D01). Differences:
 - `start_id` refers to `localization/d01/script_d01.csv`. `SCR_D01_S05_START` is not a script line: it means "when the investigation screen first opens".
 - Debate music rules are unchanged from 設計總覽 §十一 with v2 terms: BGM07 at the start; BGM08 when the opponent first drops to 50% 可信度 or is first in 破防; BGM09 when the endgame starts (論破, or the opponent would drop to 0 without one) and through the endgame; BGM10 when the player is 逆論破'd, back to BGM09 if the player's last card succeeds.
 - A `NONE` cue before a line means silence until the next cue.
+- On a loss, scene S08 does not fire its scene-start cue (`BGM_D01_14`); `BGM_D01_20` (silence) applies to the whole scene and the result screen.
