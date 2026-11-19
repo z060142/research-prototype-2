@@ -82,7 +82,7 @@ uv run python sim_data.py data/ch02_fitch.json --n 4000 --per 60 --md out.md
 uv run python carry_sweep.py ../demo/debate_data.json --limits 11 10 9 8 7 --appraisals 2 1 --md out.md
 ```
 
-對每個「攜帶上限 × 鑑定上限」：4.5 檢查（失敗、WEAK）、謹慎／粗心／心理牌在各帶法的平均勝率、謹慎玩家最差帶法的勝率、對手撿到 2 件的比例，以及失敗帶法共同沒帶的證物（通常就是原因）。`sim_data.py` 也可用 `--carry`、`--appraisals`、`--hp`、`--dmg` 覆寫資料裡的數值做試算。
+對每個「攜帶上限 × 鑑定上限」：4.5 檢查（失敗、WEAK）、謹慎／粗心／心理牌在各帶法的平均勝率、謹慎玩家最差帶法的勝率、對手撿到 2 件的比例，以及失敗帶法共同沒帶的證物（通常就是原因）。`sim_data.py` 也可用 `--carry`、`--appraisals`、`--hp`、`--dmg`、`--tendency`（行為表傾向規則的機率）、`--lastcard`（最後一張牌每道裂紋的傷害）覆寫數值做試算。示範章的數值凍結在章節 0.1（最後一張牌 15 × c），跑示範章時要加 `--lastcard 15`。
 
 ## 論戰資料格式（`sherefox-debate/1`）
 

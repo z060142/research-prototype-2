@@ -43,7 +43,12 @@ def main():
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--md", default=None)
     ap.add_argument("--notes", choices=["known", "missed", "all"], default="known")
+    ap.add_argument("--tendency", type=float, default=None, help="override the behaviour table's tendency (0-1)")
+    ap.add_argument("--lastcard", type=float, default=None, help="override the last card's damage per crack (e.g. the demo's frozen 15)")
     a = ap.parse_args()
+    if a.lastcard is not None:
+        import params as _P
+        _P.LASTCARD_PER_CRACK = a.lastcard
 
     _, ev, cards, claims, appr, brk, _ = load(a.path)
     rng = random.Random(a.seed)
@@ -55,6 +60,8 @@ def main():
             d, need, rows, errs = check(a.path, override={"carry_limit": lim, "appraisal_limit": al}, notes=a.notes)
             notes = []
             base = base_overrides(d, notes)
+            if a.tendency is not None:
+                base["tendency"] = a.tendency
             fails = [r for r in rows if not r["ok"]]
             weak = [r for r in rows if r["ok"] and r["cuts"] == 0]
             two = sum(1 for r in rows if len(r["picked"]) >= 2) / len(rows)

@@ -178,9 +178,14 @@ def main():
     ap.add_argument("--appraisals", type=int, default=None, help="override appraisal_limit")
     ap.add_argument("--hp", type=float, default=None, help="override opponent hp")
     ap.add_argument("--dmg", type=float, default=None, help="override opponent base_damage")
+    ap.add_argument("--tendency", type=float, default=None, help="override the behaviour table's tendency (0-1)")
+    ap.add_argument("--lastcard", type=float, default=None, help="override the last card's damage per crack (e.g. the demo's frozen 15)")
     ap.add_argument("--notes", choices=["known", "missed", "all"], default="known",
                     help="optional_known notes: all found (default), all missed, or every subset")
     a = ap.parse_args()
+    if a.lastcard is not None:
+        import params as _P
+        _P.LASTCARD_PER_CRACK = a.lastcard
 
     ov = {}
     if a.carry is not None:
@@ -195,6 +200,8 @@ def main():
         base["hp"] = a.hp
     if a.dmg is not None:
         base["opp_base"] = a.dmg
+    if a.tendency is not None:
+        base["tendency"] = a.tendency
     psych_ev = {e["id"] for e in d["evidence"] if e.get("psych_card")}
     ranked = sorted(rows, key=score, reverse=True)
     top = ranked[:max(1, len(ranked) // 4)]
