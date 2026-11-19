@@ -25,9 +25,8 @@ Sophistry-free route (PASS) = there is a set of safe claims, pairwise not
 reached without sophistry by baiting a rebuttal with 打迷糊仗 (6.3), and 接話
 claims are a bonus, so neither is required.
 
-WEAK = PASS, but no safe claim breaks any of his lies: 破防 then depends only
-on baiting his rebuttals, and sim_data.py shows a careful player losing most
-of those debates. Treat WEAK as a warning for the level design.
+WEAK = a route exists, but no safe claim breaks any of his lies. Rule 4.5
+(0.4, a8e4305) requires at least one such 正論 cut, so WEAK is a failure.
 
 Also reported (how pretty the route can be; not part of PASS/FAIL):
   clean     grade 1 possible: PASS and nothing picked up
@@ -192,10 +191,11 @@ def main():
     d, need, rows, errs = check(a.path, a.all_sizes)
     fails = [r for r in rows if not r["ok"]]
     weak = [r for r in rows if r["ok"] and r["cuts"] == 0]
+    bad = fails + weak
     out = [f"# 4.5 檢查：{d.get('id', a.path)}", "",
            f"* 論破門檻 {need}；攜帶上限 {d.get('carry_limit')}；鑑定上限 {d.get('appraisal_limit')}；對手最多撿 {d.get('max_pickup', 2)} 件",
            f"* 帶法 × 鑑定組合：{len(rows)}；**沒有不靠詭辯的獲勝路線：{len(fails)}**；"
-           f"有路線但沒有任何正論能截斷他的謊言（WEAK）：{len(weak)}",
+           f"有路線但沒有任何正論能截斷他的謊言（WEAK，也算失敗）：{len(weak)}",
            f"* 可能乾淨論破（等級一）：{sum(r['clean'] for r in rows)}；能截斷要害：{sum(r['cut_key'] for r in rows)}；"
            f"能截斷最後一張牌：{sum(1 for r in rows if r['counter'])}；黃金線索可能（真相度上限 ≥ 70）：{sum(r['truth_max'] >= 70 for r in rows)}", ""]
     if errs:
@@ -218,7 +218,7 @@ def main():
     print(text)
     if a.md:
         open(a.md, "w", encoding="utf-8").write(text + "\n")
-    sys.exit(1 if fails else 0)
+    sys.exit(1 if bad else 0)
 
 
 if __name__ == "__main__":

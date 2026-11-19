@@ -96,6 +96,7 @@ class Result:
     slips: int       # unfavourable facts he played
     guard_saved: bool
     dying: bool      # 垂死反撲 beat happened
+    surrendered: bool  # gave up in the endgame because guilt was over threshold (or confessed)
 
 
 class Debate:
@@ -214,6 +215,7 @@ class Debate:
         self.guard_saved = False
         self.dying = False
         self.both_zero = False
+        self.surrendered = False
 
     # ------------------------------------------------------------ helpers
     def ev(self, name):
@@ -357,7 +359,7 @@ class Debate:
         return Result(win, kind, grade, self.rnd, self.ronpa_done, self.reversed, self.cracks,
                       self.denials, tuple(self.crossed), self.stalls, self.psych_card_used,
                       max(0.0, truth), self.rev_ronpa, self.comeback, self.catches, self.slips,
-                      self.guard_saved, self.dying)
+                      self.guard_saved, self.dying, self.surrendered or kind == "confession")
 
     # ------------------------------------------------------------ endgame (7.4)
     def opp_endgame(self):
@@ -370,6 +372,7 @@ class Debate:
         self.endgame_used = True
         c = self.cracks
         if self.over[GV]:
+            self.surrendered = True
             return self.finish(True, ("clean" if c == 0 else "hold") if trigger == "ronpa" else "grind")
         if c == 0 and not self.picked_reserved:
             if self.scripted_last:                      # 垂死反撲 (R-14)

@@ -47,6 +47,8 @@ def summarize(results):
         "slip": pct(lambda r: r.slips > 0),
         "guard_saved": pct(lambda r: r.guard_saved),
         "dying": pct(lambda r: r.dying),
+        "surrender": pct(lambda r: r.surrendered),
+        "psych_used": pct(lambda r: r.psych_card),
         "timeout": pct(lambda r: r.kind == "timeout"),
         "cross_p": pct(lambda r: r.crossed[0]),
         "cross_g": pct(lambda r: r.crossed[1]),

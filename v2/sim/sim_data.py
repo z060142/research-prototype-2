@@ -202,6 +202,11 @@ def main():
         L.append(f"| {POLICY_ZH[pol]} | {pct(s['win'])} | {s['rounds']:.1f} | {pct(s['ronpa'])} | {pct(s['g1'])} | {pct(s['g2'])} | "
                  f"{pct(s['g3'])} | {pct(s['g4'])} | {pct(s['reversed_of_wins'])} | {pct(s['loss_after_ronpa'])} | {pct(s['rev_ronpa'])} | "
                  f"{pct(s['catch'])} | {pct(s['slip'])} | {pct(s['cross_p'])} | {pct(s['cross_g'])} | {pct(s['cross_a'])} | {pct(s['truth'])} |")
+    ps = dict(out_rows)["psych"]
+    L += ["", "## 心理牌路線（心理牌策略）", "",
+          f"* 打出心理牌：{pct(ps['psych_used'])}；罪惡感越線：{pct(ps['cross_g'])}；"
+          f"對手因罪惡感放棄或自白：{pct(ps['surrender'])}；勝率 {pct(ps['win'])}（謹慎 {pct(dict(out_rows)['careful']['win'])}）",
+          f"* 對照謹慎策略：罪惡感越線 {pct(dict(out_rows)['careful']['cross_g'])}；放棄或自白 {pct(dict(out_rows)['careful']['surrender'])}"]
     L += ["", "## 謹慎玩家在每種帶法下的勝率", "",
           f"每種帶法 {a.per} 場。最低 {pct(wr[0])}、中位數 {pct(statistics.median(wr))}、最高 {pct(wr[-1])}。", "",
           "最差的 5 種帶法：", "",
