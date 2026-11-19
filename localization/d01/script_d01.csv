@@ -320,7 +320,7 @@ TELL_D01_HINT_FACT,亞瑟,Arthur,這句……是真的。打不掉。,This one..
 TELL_D01_HINT_SLIP,亞瑟,Arthur,他的話……沒說完。,He didn't... finish that sentence.,Arthur hint when the tell shows a half sentence (every time; timing in chapter §11)
 TELL_D01_HINT_KEY,亞瑟,Arthur,這是他整套說法的地基！,That's the foundation of his whole story!,Arthur hint when the tell box holds the keystone L2 (once per debate; timing in chapter §11)
 TELL_D01_HINT_LAST,亞瑟,Arthur,他要翻供。妳手上有能堵住這句話的東西嗎？,He's going to change his story. Have you got anything that can stop that line?,"Arthur hint on a last-card tell, incl. last gasp (every time; timing in chapter §11)"
-TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,We've nothing on us that can refute that.,Arthur hint when the tell box holds a lie no carried claim can cut (once per debate; timing in chapter §11)
+TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,We've nothing on us that can refute that.,Arthur hint when the tell box holds a lie no carried sound claim can cut; sophistry does not count (once per debate; timing in chapter §11)
 FOG_D01_1,Sherefox,Sherefox,說到守靈——塞德里克先生，你知道為什麼窗戶要留一道縫嗎？聽說是給靈魂走的。不過我猜，也可以給煤氣味走。,"Speaking of wakes—Mr Cedric, do you know why the window is left open a crack? They say it's to let the soul out. Though I suppose it would let the gas smell out too.",打迷糊仗 line
 FOG_D01_2,Sherefox,Sherefox,塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？,"Mr Cedric, what lovely charms. The blue eye bead—did you buy that in Venice?",打迷糊仗 line
 FOG_D01_3,Sherefox,Sherefox,刮痕啊……說到刮痕，你的鞋跟也磨得好厲害喔。,"Scuffs, you say... speaking of scuffs, your boot heels are dreadfully worn down.",打迷糊仗 line

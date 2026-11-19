@@ -643,7 +643,7 @@
 | 小動作預兆 | 立論＝`TELL_D01_GESTURE_ASSERT` 整理黑領巾、微微一笑；強辯＝`TELL_D01_GESTURE_PUSH` 摘下手套拍在桌上；反駁＝`TELL_D01_GESTURE_REBUT` 十指相抵、身體往後靠；周旋＝`TELL_D01_GESTURE_STALL` 摸懷錶鏈上的護身符 |
 | 預兆台詞 | 立論：`TELL_D01_ASSERT_1` 「請容我把話說清楚。」／強辯：`TELL_D01_PUSH_1` 「夠了。」`TELL_D01_PUSH_2` 「我受夠這場鬧劇了。」／反駁：`TELL_D01_REBUT_1` 「請說，我洗耳恭聽。」`TELL_D01_REBUT_2` 「您確定要這麼說？」／周旋：`TELL_D01_STALL_1` 「我想，我們都需要冷靜一下。」 |
 | 亞瑟的預兆提示 | 立論：`TELL_D01_HINT_ASSERT` 「他在整理領巾。要開口了。」／強辯：`TELL_D01_HINT_PUSH` 「他摘手套了——準備接住。」／反駁：`TELL_D01_HINT_REBUT` 「他在等妳先說。別亂拉線。」／周旋：`TELL_D01_HINT_STALL` 「他又在摸那個錶鏈……在拖時間。現在說我們的。」 |
-| 亞瑟提示的時機 | 每回合最多一句，在預兆之後、選擇之前。依序找第一個條件成立、且還沒用完次數的一句，用完的往下遞補：① `TELL_D01_HINT_LAST`：最後一張牌的預兆（垂死反撲也算），每次都播；② `TELL_D01_HINT_SLIP`：預兆顯示半句時，每次都播；③ `TELL_D01_HINT_KEY`：論點框是要害論點 L2，每場一次；④ `TELL_D01_HINT_NOCUT`：論點框是謊言，而玩家帶的說法沒有一個能截斷它（正論不在可破解清單、也沒有同爭點的詭辯），每場一次；⑤ `TELL_D01_HINT_FACT`：論點框是有利的事實，每場一次；⑥ 行動提示 `TELL_D01_HINT_ASSERT`／`PUSH`／`REBUT`／`STALL`：只在明示預兆，每種行動每場一次。③～⑤看論點框裡的牌，明示或模糊都算（模糊預兆一律顯示「他若開口，會說」的牌，規則 0.6 第 15 節〔M2〕）；模糊預兆不播行動提示 |
+| 亞瑟提示的時機 | 每回合最多一句，在預兆之後、選擇之前。依序找第一個條件成立、且還沒用完次數的一句，用完的往下遞補：① `TELL_D01_HINT_LAST`：最後一張牌的預兆（垂死反撲也算），每次都播；② `TELL_D01_HINT_SLIP`：預兆顯示半句時，每次都播；③ `TELL_D01_HINT_KEY`：論點框是要害論點 L2，每場一次；④ `TELL_D01_HINT_NOCUT`：論點框是謊言，而玩家帶的說法裡沒有任何一個正論在它的可破解清單內（同爭點的詭辯不算），每場一次；⑤ `TELL_D01_HINT_FACT`：論點框是有利的事實，每場一次；⑥ 行動提示 `TELL_D01_HINT_ASSERT`／`PUSH`／`REBUT`／`STALL`：只在明示預兆，每種行動每場一次。③～⑤看論點框裡的牌，明示或模糊都算（模糊預兆一律顯示「他若開口，會說」的牌，規則 0.6 第 15 節〔M2〕）；模糊預兆不播行動提示 |
 | 其他台詞的時機 | 交鋒串場 `BEAT_D01_CLASH_1`／`_2`：每場第一次交鋒播一次。說法自帶的串場（如 `BEAT_D01_07A_*`、`BEAT_D01_P1A_*`、`BEAT_D01_02C_1`）：只要用到就播。他的預兆台詞 `TELL_D01_<行動>_n`：只在明示預兆播。`STATE_D01_ART_HACHIKU`：每場第一次破竹加層。`STATE_D01_ART_CORNERED`：進入困獸時。`STATE_D01_SHF_SHAKEN`：每場他第一次破防 |
 | 亞瑟的狀態台詞（沿用 v1 的語氣） | 破竹：`STATE_D01_ART_HACHIKU` 「漂亮，讀對了。」／困獸：`STATE_D01_ART_CORNERED` 「他被逼到牆角了，接下來每一句都會很重——但也很好認。」／失守：`STATE_D01_ART_BREACHED` 「先站穩，下一手用正論，我陪妳撐過去。」／援護：`STATE_D01_ART_COVER` 「等一下，各位！她的意思是——」（打圓場） |
 | Sherefox 的狀態台詞 | 破竹・一：`STATE_D01_SHF_HACHIKU_1` 「一分鐘。」／破竹・二：`STATE_D01_SHF_HACHIKU_2` 「兩分鐘。」／破竹・三：`STATE_D01_SHF_HACHIKU_3` 「三分鐘，剛剛好——勢如破竹！」／大字・論破：`STATE_D01_SHF_BREAK` 「三分鐘的黑暗，到此為止！」／大字・動搖：`STATE_D01_SHF_SHAKEN` 「燈亮了，塞德里克先生。」／失守：`STATE_D01_SHF_BREACHED` 「……嗚，被看穿了。」 |
@@ -743,7 +743,7 @@
 | `TELL_D01_HINT_SLIP` | 亞瑟 | 他的話……沒說完。 | Arthur hint when the tell shows a half sentence (every time; timing in §11) |
 | `TELL_D01_HINT_KEY` | 亞瑟 | 這是他整套說法的地基！ | Arthur hint when the tell box holds the keystone L2 (once per debate; timing in §11) |
 | `TELL_D01_HINT_LAST` | 亞瑟 | 他要翻供。妳手上有能堵住這句話的東西嗎？ | Arthur hint on a last-card tell, incl. last gasp (every time; timing in §11) |
-| `TELL_D01_HINT_NOCUT` | 亞瑟 | 我們手上沒有能駁倒這句話的東西。 | Arthur hint when the tell box holds a lie no carried claim can cut (once per debate; timing in §11) |
+| `TELL_D01_HINT_NOCUT` | 亞瑟 | 我們手上沒有能駁倒這句話的東西。 | Arthur hint when the tell box holds a lie no carried sound claim can cut; sophistry does not count (once per debate; timing in §11) |
 | `FOG_D01_1` | Sherefox | 說到守靈——塞德里克先生，你知道為什麼窗戶要留一道縫嗎？聽說是給靈魂走的。不過我猜，也可以給煤氣味走。 | 打迷糊仗 line |
 | `FOG_D01_2` | Sherefox | 塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？ | 打迷糊仗 line |
 | `FOG_D01_3` | Sherefox | 刮痕啊……說到刮痕，你的鞋跟也磨得好厲害喔。 | 打迷糊仗 line |
@@ -985,6 +985,8 @@ Sherefox：閥輪上沾的是書房壁爐的煙灰。關燈的人先去了書房
 #### 第 1 回合
 
 系統：（預兆）塞德里克整理了一下黑領巾。論點：「我整晚守在叔叔的靈柩旁，一步也沒有離開過。」可能行動：立論／強辯。
+
+亞瑟：（提示）`TELL_D01_HINT_NOCUT` 我們手上沒有能駁倒這句話的東西。
 
 > 選擇：議論 → C\_D01\_P1 通靈板 → P1A（詭辯・心理牌）
 
@@ -1507,6 +1509,8 @@ Sherefox：附錄讓你少了一半遺產。而你欠四百鎊，月底到期。
 #### 第 7 回合
 
 系統：（預兆）塞德里克摘下手套，嘴角往上一提。論點：「燈滅的時候，我聽見後門響了一聲，有人跑了出去。」可能行動：強辯／反駁。（他已經連續兩回合立論，規則⑤：這回合不能再立論）
+
+亞瑟：（提示）`TELL_D01_HINT_NOCUT` 我們手上沒有能駁倒這句話的東西。
 
 > 註：04C「廚房裡只有瑪莎」本來顯示為正論，也截得斷 L4。但第 4 回合他說出「鎖匠昨晚回來過」之後，這句話成了她的已知，04C 變成詭辯。誠心打的她，不碰詭辯。
 
