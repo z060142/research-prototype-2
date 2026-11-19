@@ -86,7 +86,7 @@ UI_V2_CARRY_FULL,Investigation,帶不下了。先放下一件。,No room. Put so
 UI_V2_CARRY_CONFIRM,Investigation,確定,Confirm,
 UI_V2_CARRY_LEFT_HEAD,Investigation,以下東西會留在現場,These will be left behind,
 UI_V2_CARRY_LEFT_ASK,Investigation,確定嗎？,Are you sure?,
-UI_V2_CARRY_ISSUES,Investigation,本案的爭點,Issues in This Case,"optional panel, pending the user's decision"
+UI_V2_CARRY_ASK_ARTHUR,Investigation,問亞瑟的意見,Ask Arthur,button on the carry screen; Arthur comments on the current selection (he can be wrong)
 UI_V2_APPRAISE,Investigation,請亞瑟鑑定,Ask Arthur to Appraise,
 UI_V2_APPRAISE_LEFT,Investigation,鑑定 剩 {n} 次,Appraisals left: {n},
 UI_V2_APPRAISE_NONE,Investigation,鑑定次數用完了。,No appraisals left.,
