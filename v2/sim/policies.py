@@ -14,12 +14,24 @@ import random
 class Policy:
     name = "base"
 
-    # how the policy plays its own last card (7.5) / the endgame counter (7.4)
+    # how the policy plays its own last card (7.5) / the endgame cut (7.4)
     def comeback_read(self, d) -> float:
         return 0.9
 
-    def counter_last(self, d) -> bool:
-        return True
+    def counter_last(self, d, has) -> bool:
+        """Try to cut the last card? `has` = the player holds a claim that breaks it."""
+        return has
+
+    # 援護 (5.3): arm it on a risky action, once per debate
+    def want_guard(self, d, ch) -> bool:
+        risky = ch["kind"] in ("intercept", "dismantle") or ch.get("soph") or ch["kind"] == "psych"
+        return risky and d.last_clarity != 0
+
+    def decide(self, d, seen, card):
+        ch = self.choose(d, seen, card)
+        if not d.guard_used and self.want_guard(d, ch):
+            ch = dict(ch, guard=True)
+        return ch
 
     # helpers ---------------------------------------------------------
     @staticmethod
@@ -44,18 +56,20 @@ class Policy:
     @staticmethod
     def covered_opp_lie(d):
         for n in d.opp.chain:
-            if n.card and n.card.kind == "lie" and n.card.covered:
+            if n.card and n.card.is_lie and n.card.covered:
                 return n
         return None
 
     def judge_truth(self, d, card) -> str:
         """What the player believes the claim is: 'lie_covered', 'lie', 'fav', 'unfav'."""
-        if card.kind == "lie" and card.covered:
+        if card.is_lie and card.covered:
             return "lie_covered" if d.rng.random() < 0.95 else "lie"
         right = d.rng.random() < d.skill["truth"]
         if right:
-            return {"lie": "lie", "fav": "fav", "picked": "fav", "unfav": "unfav"}[card.kind]
-        return d.rng.choice([k for k in ("lie_covered", "fav", "unfav") if k != card.kind])
+            return "lie" if card.is_lie else ("unfav" if card.kind == "unfav" else "fav")
+        wrong = {"lie": ("fav", "unfav"), "fav": ("lie_covered", "unfav"), "unfav": ("lie_covered", "fav")}
+        truth = "lie" if card.is_lie else ("unfav" if card.kind == "unfav" else "fav")
+        return d.rng.choice(wrong[truth])
 
 
 class Careful(Policy):
@@ -111,8 +125,11 @@ class Careless(Policy):
     def comeback_read(self, d):
         return 0.5
 
-    def counter_last(self, d):
-        return d.rng.random() < 0.6
+    def counter_last(self, d, has):
+        return d.rng.random() < (0.6 if has else 0.3)
+
+    def want_guard(self, d, ch):
+        return d.rng.random() < 0.25
 
     def choose(self, d, seen, card):
         r = d.rng
@@ -163,7 +180,7 @@ class Sophist(Careful):
             if d.stall_streak >= 1:
                 n = d.opp.chain[-1] if d.opp.chain else None
                 if n is not None:
-                    return {"kind": "dismantle", "node": n, "soph": not (n.card.kind == "lie" and n.card.covered)}
+                    return {"kind": "dismantle", "node": n, "soph": not (n.card.is_lie and n.card.covered)}
                 return self.argue_proper(d) or {"kind": "stall"}
             return {"kind": "stall"}
         if self.can_finish(d):

@@ -1,6 +1,6 @@
 # v2 論戰模擬
 
-依 `v2/00_core_rules.md`（草案 0.1）模擬一場論戰，用來定 `v2/01_numbers.md` 的數值。
+依 `v2/00_core_rules.md`（草案 0.3）模擬一場論戰，用來定 `v2/01_numbers.md` 的數值。
 
 ## 安裝與執行
 
@@ -11,7 +11,7 @@
 #   Windows:  powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 #   macOS / Linux:  curl -LsSf https://astral.sh/uv/install.sh | sh
 cd v2/sim
-uv run python run.py --n 4000 --md results_lock.md --json results_lock.json
+uv run python run.py --n 4000 --md results.md --json results.json
 ```
 
 或直接執行 `start.bat`（Windows）／`start.sh`。
@@ -26,16 +26,99 @@ uv run python run.py --n 4000 --md results_lock.md --json results_lock.json
 | `engine.py` | 一場論戰的規則實作：對決表 6.3、兩層反駁 6.4、接話 6.5、論證與態勢 7.1～7.2、論破與殘局 7.3～7.5、心理數值 8 |
 | `policies.py` | 五種玩家策略：謹慎、粗心、詭辯、拖延、心理牌 |
 | `run.py` | 批次執行並輸出 Markdown／JSON 結果 |
-| `results_lock.md` | 採用提案「論破前鎖 1」（`USE_LOCK_FLAGS = True`）的結果 |
-| `results_as_written.md` | 規則照字面（`USE_LOCK_FLAGS = False`）的結果 |
+| `results.md`／`results.json` | 最近一次 4000 場的結果（`01_numbers.md` 第 5 節引用） |
+| `check45.py` | 4.5 防卡關檢查（見下） |
+| `data/` | 論戰資料（`sherefox-debate/1` 格式） |
 
 ## 開關
 
 | `params.py` | 預設 | 意義 |
 | --- | --- | --- |
-| `USE_LOCK_FLAGS` | True | 提案：對手偵探、後期對手與 Wolfhart 在被論破前可信度不會低於 1（v1 已有此設定）。設為 False 即規則原文 |
-| `GRIND_LOCK` | False | 所有對手都論破前鎖 1 |
-| `SOPH_INTERCEPT_DMG` | 20 | 詭辯截斷的傷害（規則原文與正論截斷相同） |
-| `SOPH_INTERCEPT_BREAKS` | True | 詭辯截斷是否造成破防（規則原文：是） |
+| `SOPH_INTERCEPT_DMG` | 20 | 詭辯截斷的傷害（規則：與正論截斷相同） |
+| `SOPH_INTERCEPT_BREAKS` | True | 詭辯截斷是否造成破防（規則：是） |
+| `MAX_ROUNDS` | 20 | 回合上限（Ch.1 亞瑟另設 8） |
 
 規則詮釋（ASSUMPTION-xx）的完整清單見 `v2/01_numbers.md` 第 7 節。
+
+## 4.5 檢查（防卡關）
+
+```bash
+uv run python check45.py data/ch02_fitch.json            # 只看帶滿上限的帶法
+uv run python check45.py data/ch02_fitch.json --all-sizes # 也檢查少帶的帶法
+uv run python check45.py data/ch02_fitch.json --verbose --md out.md   # 列出每一種組合
+```
+
+列舉所有合法的「帶法 × 鑑定」組合，回報沒有「不靠詭辯的獲勝路線」的組合。有失敗時結束碼為 1，可以放進批次檢查。判定方式寫在 `check45.py` 開頭的說明；摘要：
+
+* 已知＝`always_known`＋帶走的證物＋其 `grants`＋做過的鑑定。
+* 安全正論＝證物有帶、解鎖條件都已知、衝突清單沒有已知項（`said:` 開頭的項目是對手在論戰中才會說的話，開場時不算已知）、不是心理牌，且對手手上沒有能駁倒它的東西（撿到的證物或他自己的事實牌）。
+* 對手撿證物：被留下且有 `opponent_use` 的證物，依 `pickup_priority` 撿，最多 `max_pickup` 件。
+* **通過**＝存在一組兩兩不互斥的安全正論，數量 ≥ 論破門檻，涵蓋 ≥ 2 個爭點。破防一定能不靠詭辯達成（打迷糊仗騙反駁落空），接話只算加分，所以不列入條件。
+* 另外回報漂亮程度：能否乾淨論破、能否截斷要害、能否截斷最後一張牌、只能用詭辯打掉的撿來謊言、真相度上限。
+
+## 論戰資料格式（`sherefox-debate/1`）
+
+一場論戰一個 JSON 檔（UTF-8）。範例：`data/ch02_fitch.json`（`v2/02_sample_debate_ch02.md` 的 Ch.2 費奇）。所有 ID 沿用 .md 表格裡的 ID；爭點用 `issues[].id` 參照。
+
+### 頂層
+
+| 欄位 | 必填 | 內容 |
+| --- | --- | --- |
+| `format` | 是 | 固定 `"sherefox-debate/1"` |
+| `id` | 是 | 論戰代號，例 `"ch02_fitch"` |
+| `stage` | 是 | `early`／`mid`／`late`（決定論破門檻 3／4／4） |
+| `ronpa_len` | 否 | 覆寫論破門檻 |
+| `carry_limit` | 是 | 攜帶上限（4.1）；`null` ＝不設限 |
+| `appraisal_limit` | 是 | 鑑定次數上限（4.3） |
+| `max_pickup` | 否 | 對手最多撿幾件，預設 2 |
+| `issues` | 是 | `[{id, name}]`，3 個 |
+| `always_known` | 否 | 不佔名額、一定拿得到的觀察與人物筆記 ID（例 `O12`、`PN1`） |
+| `evidence` | 是 | 見下 |
+| `appraisals` | 否 | 見下 |
+| `claims` | 是 | 每個說法一筆，見下 |
+| `opponent` | 是 | 見下 |
+
+### `evidence[]`
+
+| 欄位 | 必填 | 內容 |
+| --- | --- | --- |
+| `id`、`name` | 是 | |
+| `carriable` | 否 | 預設 true；劇情證物填 false（不列入帶法） |
+| `appraisal` | 否 | 這件證物可做的鑑定 ID |
+| `grants` | 否 | 帶走時一併得到的觀察 ID（例 E02\_03 → `O03`） |
+| `opponent_use` | 否 | 被留下時對手用它打出的牌 ID（對應 `opponent.cards` 中 `kind: "pickup"` 的牌） |
+| `key` | 否 | 與真相有關的關鍵證物（9：沒帶走真相度 −10%） |
+| `psych_card` | 否 | 心理牌（佔名額，說法一律詭辯、不計裂紋） |
+
+### `appraisals[]`
+
+`{id, target, unlocks[]}`。`target` 是證物 ID。鑑定 ID 本身就是「已知」項目，說法的 `unlock`／`conflicts` 直接寫鑑定 ID。`unlocks` 只是方便閱讀，判定以說法的 `unlock` 為準。可加 `reveals`（結果文字）。
+
+### `claims[]`（說法，3.1）
+
+| 欄位 | 必填 | 內容 |
+| --- | --- | --- |
+| `id`、`evidence`、`issue` | 是 | |
+| `unlock` | 是 | 解鎖條件：已知項目 ID 清單（鑑定、觀察、人物筆記、證物）；空 ＝一律出現 |
+| `conflicts` | 是 | 衝突清單：任一項已知 → 顯示為詭辯。對手在論戰中才說的話寫成 `"said:<簡述或台詞 ID>"` |
+| `true` | 是 | 真偽 |
+| `exclusive` | 是 | 互斥的說法 ID（寫一邊即可，視為雙向） |
+| `breaks` | 是 | 能破解的對手牌 ID（謊言、撿來的謊言、最後一張牌）。和牌上的 `breakable_by` 是同一個關係，兩邊擇一寫或都寫，程式會合併 |
+| `opp_refute` | 否 | 對手能駁倒它的方式：`[{via, line_id}]`；`via` 是撿來的證物 ID 或他的事實牌 ID，`line_id` 是駁倒台詞 ID。單一物件也接受 |
+| `psych` | 否 | 心理作用：`{P, G, A}`（缺的當 0） |
+| `private` | 否 | 是否公開私事 |
+| `psych_card` | 否 | 心理牌的說法 |
+| `text` | 否 | 主張台詞（程式不讀） |
+
+### `opponent`
+
+| 欄位 | 必填 | 內容 |
+| --- | --- | --- |
+| `cards[]` | 是 | `{id, kind, issue, breakable_by[], keystone, frames, as, source}`。`kind`：`lie`／`fav`／`unfav`／`pickup`／`last`。`pickup` 另填 `as`（`lie`／`fav`，4.2「當謊言還是事實用」）與 `source`（證物 ID）。`keystone` ＝要害論點；`frames` ＝栽贓類（罪惡感越線時不用） |
+| `pickup_priority` | 否 | 撿證物的順序（證物 ID）；省略則依 `evidence` 的順序 |
+| `last_card_priority` | 否 | 例 `["pickup", "last"]` |
+| `hp`、`base_damage` | 否 | 覆寫數值表（模擬用） |
+| `personality` | 否 | 8.4 性格表：`{start:{P,G,A}, threshold:{P,G,A}, decay:{P,G,A}, event_mult:{<事件>:{P,G,A}}, weakness:[...], rage_force_share}` |
+| `behavior` | 否 | 行為表：`{weights:{attack,force,rebut,parry}, rules:[...], play_order:[...], tell_clarity:{clear,vague,disguise}}` |
+
+`personality`、`behavior`、`hp`、`base_damage` 目前只供人讀與日後模擬使用，4.5 檢查不讀。未列出的欄位一律忽略，可以自由加註解欄位（例 `note`）。

@@ -1,0 +1,74 @@
+{
+  "format": "sherefox-debate/1",
+  "id": "ch02_fitch",
+  "source": "v2/02_sample_debate_ch02.md",
+  "stage": "early",
+  "carry_limit": 7,
+  "appraisal_limit": 2,
+  "max_pickup": 2,
+  "issues": [
+    {"id": "時", "name": "時間"},
+    {"id": "法", "name": "手法"},
+    {"id": "源", "name": "來源與動機"}
+  ],
+  "always_known": ["O09", "O12", "PN1", "PN2"],
+  "evidence": [
+    {"id": "E02_01", "name": "特製雙層發條齒輪", "carriable": true, "appraisal": "A01", "key": true},
+    {"id": "E02_02", "name": "報時鳥鐘", "carriable": true, "appraisal": "A02", "key": true},
+    {"id": "E02_03", "name": "鐘擺護蓋上的新刮痕", "carriable": true, "grants": ["O03"], "opponent_use": "P03", "key": true},
+    {"id": "E02_04", "name": "報童小湯米的證詞", "carriable": true, "key": true},
+    {"id": "E02_05", "name": "寄修收據", "carriable": true, "opponent_use": "P05"},
+    {"id": "E02_06", "name": "店內零件目錄", "carriable": true, "opponent_use": "P06"},
+    {"id": "E02_07", "name": "費奇袖口的黃銅細屑", "carriable": true, "appraisal": "A07", "key": true},
+    {"id": "E02_09", "name": "當票", "carriable": true},
+    {"id": "C02_P1", "name": "報時鳥的備用鳥笛", "carriable": true, "psych_card": true}
+  ],
+  "appraisals": [
+    {"id": "A01", "target": "E02_01", "unlocks": ["01A", "01C", "06B", "09C"]},
+    {"id": "A02", "target": "E02_02", "unlocks": ["02A", "05A"]},
+    {"id": "A07", "target": "E02_07", "unlocks": ["07A"]}
+  ],
+  "claims": [
+    {"id": "01A", "evidence": "E02_01", "issue": "源", "unlock": ["A01"], "conflicts": [], "true": true, "exclusive": [], "breaks": ["L3", "P06"]},
+    {"id": "01B", "evidence": "E02_01", "issue": "法", "unlock": [], "conflicts": ["A07"], "true": false, "exclusive": ["07A", "07B"], "breaks": [], "psych": {"P": -5}},
+    {"id": "01C", "evidence": "E02_01", "issue": "法", "unlock": ["A01"], "conflicts": [], "true": true, "exclusive": [], "breaks": ["L2"]},
+    {"id": "02A", "evidence": "E02_02", "issue": "時", "unlock": ["A02"], "conflicts": [], "true": true, "exclusive": ["02B"], "breaks": ["L1"]},
+    {"id": "02B", "evidence": "E02_02", "issue": "時", "unlock": [], "conflicts": ["A02", "O12", "E02_03", "said:有人撬開護蓋"], "true": false, "exclusive": ["02A"], "breaks": ["L1"], "opp_refute": [{"via": "E02_03", "line_id": "R02B"}]},
+    {"id": "02C", "evidence": "E02_02", "issue": "法", "unlock": [], "conflicts": [], "true": true, "exclusive": [], "breaks": [], "psych": {"P": 5, "G": 15}},
+    {"id": "03A", "evidence": "E02_03", "issue": "時", "unlock": [], "conflicts": [], "true": true, "exclusive": ["03C"], "breaks": ["P03"]},
+    {"id": "03B", "evidence": "E02_03", "issue": "法", "unlock": ["O09"], "conflicts": [], "true": true, "exclusive": ["03C"], "breaks": ["P03", "K1"]},
+    {"id": "03C", "evidence": "E02_03", "issue": "法", "unlock": [], "conflicts": ["O03"], "true": false, "exclusive": ["03A", "03B"], "breaks": ["L2"]},
+    {"id": "04A", "evidence": "E02_04", "issue": "時", "unlock": [], "conflicts": [], "true": true, "exclusive": ["04B"], "breaks": ["L1", "L2"]},
+    {"id": "04B", "evidence": "E02_04", "issue": "法", "unlock": [], "conflicts": ["E02_04"], "true": false, "exclusive": ["04A"], "breaks": [], "psych": {"A": 10}},
+    {"id": "05A", "evidence": "E02_05", "issue": "時", "unlock": ["A02"], "conflicts": [], "true": true, "exclusive": [], "breaks": ["P05"]},
+    {"id": "05B", "evidence": "E02_05", "issue": "法", "unlock": [], "conflicts": [], "true": true, "exclusive": [], "breaks": []},
+    {"id": "06A", "evidence": "E02_06", "issue": "源", "unlock": [], "conflicts": [], "true": true, "exclusive": [], "breaks": ["L3", "P06"], "psych": {"P": 5, "G": 15}},
+    {"id": "06B", "evidence": "E02_06", "issue": "源", "unlock": ["A01"], "conflicts": [], "true": true, "exclusive": [], "breaks": []},
+    {"id": "07A", "evidence": "E02_07", "issue": "法", "unlock": ["A07"], "conflicts": [], "true": true, "exclusive": ["01B"], "breaks": ["L2", "K1"]},
+    {"id": "07B", "evidence": "E02_07", "issue": "法", "unlock": [], "conflicts": [], "true": true, "exclusive": ["01B"], "breaks": []},
+    {"id": "09A", "evidence": "E02_09", "issue": "源", "unlock": [], "conflicts": [], "true": true, "exclusive": [], "breaks": [], "psych": {"P": 5}},
+    {"id": "09B", "evidence": "E02_09", "issue": "源", "unlock": [], "conflicts": [], "true": true, "exclusive": [], "breaks": [], "psych": {"P": 10, "A": 15}, "private": true},
+    {"id": "09C", "evidence": "E02_09", "issue": "源", "unlock": ["A01"], "conflicts": [], "true": true, "exclusive": [], "breaks": ["L3"], "psych": {"P": 10}},
+    {"id": "P1A", "evidence": "C02_P1", "issue": "時", "unlock": [], "conflicts": [], "true": false, "exclusive": [], "breaks": [], "psych": {"P": 20, "G": 10}, "psych_card": true},
+    {"id": "P1B", "evidence": "C02_P1", "issue": "時", "unlock": [], "conflicts": [], "true": false, "exclusive": [], "breaks": [], "psych": {"P": 15}, "psych_card": true}
+  ],
+  "opponent": {
+    "name": "費奇",
+    "cards": [
+      {"id": "L1", "kind": "lie", "issue": "時", "breakable_by": ["02A", "02B", "04A"]},
+      {"id": "L2", "kind": "lie", "issue": "法", "breakable_by": ["01C", "04A", "07A"]},
+      {"id": "L3", "kind": "lie", "issue": "源", "breakable_by": ["01A", "06A", "09C"], "keystone": true, "frames": true},
+      {"id": "F1", "kind": "fav", "issue": "法"},
+      {"id": "F2", "kind": "fav", "issue": "法"},
+      {"id": "F3", "kind": "fav", "issue": "時"},
+      {"id": "U1", "kind": "unfav", "issue": "時"},
+      {"id": "U2", "kind": "unfav", "issue": "源"},
+      {"id": "P06", "kind": "pickup", "as": "lie", "source": "E02_06", "issue": "源", "breakable_by": ["01A"], "frames": true},
+      {"id": "P05", "kind": "pickup", "as": "fav", "source": "E02_05", "issue": "時"},
+      {"id": "P03", "kind": "pickup", "as": "lie", "source": "E02_03", "issue": "時", "breakable_by": ["03A", "03B"], "frames": true},
+      {"id": "K1", "kind": "last", "breakable_by": ["03B", "07A"]}
+    ],
+    "pickup_priority": ["E02_06", "E02_05", "E02_03"],
+    "last_card_priority": ["pickup", "last"]
+  }
+}

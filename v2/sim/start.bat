@@ -6,5 +6,5 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-uv run python run.py --n 4000 --md results_lock.md --json results_lock.json
+uv run python run.py --n 4000 --md results.md --json results.json
 pause
