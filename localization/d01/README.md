@@ -1,0 +1,61 @@
+# Sherefox localization table (zh-TW / en), demo chapter D01《守靈夜消失的遺囑》
+
+Source: `v2/11_demo_chapter.md`. Every displayed line in the chapter carries its ID in backticks beside the text, so the chapter and these files cannot drift. Conventions follow `localization/README.md` (v1 package) unless noted here.
+
+All files are UTF-8 (CSV files have a BOM).
+
+## Status
+
+| Push | Content | State |
+| --- | --- | --- |
+| 1 | Everything the debate needs: claims, opponent cards, cut/refute/contradiction/link lines, reactions, tells, state lines, system templates, situational beats, warm-up (S04) and debate framing (S07) | done |
+| 2 | Investigation: evidence, hotspots, person notes, observations, appraisals, carry screen (S05/S06) | pending |
+| 3 | Story scenes: S01–S03, S08–S11 | pending |
+| 4 | English column for every row | pending |
+
+## Files
+
+| File | Rows | Content |
+| --- | ---: | :--- |
+| script_d01.csv | 241 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
+| evidence_d01.csv | 84 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
+| strings_d01.json | 325 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
+| ui_strings_d01.csv | — | written by Sherefox遊戲企劃, not part of this build; not merged into strings_d01.json |
+
+## ID scheme
+
+| Prefix | Meaning | File |
+| --- | --- | --- |
+| `ISSUE_D01_{OPP,METHOD,MOTIVE}` (+`_SHORT`) | issue names 機會／手法／動機 (short: 機／法／動) | evidence |
+| `CLM_D01_<id>` / `CLM_D01_<id>_LINE` | claim short label (shown on the chain and in the claim picker) / Sherefox's spoken line. `<id>` = 01A … 12A, P1A, P1B | evidence |
+| `CARD_D01_<card>` | opponent card short label (his chain). `<card>` = L1–L4, F1, F2, U1, U2, P05, P06, P07, K1 | evidence |
+| `CARD_D01_<card>_STATE / _PUSH / _RETRACT / _DOWN` | 立論 / 強辯 / 周旋改口 (re-raised, softened) / knocked down by a 正論 | script |
+| `CARD_D01_U*_TELL / _CATCH` | half-sentence shown in the tell before a slip / Sherefox's 「抓住他的話」 line | script |
+| `CUT_D01_<claim>_<card>` | his reaction when that claim cuts that card (replaces `_DOWN`) | script |
+| `REFUTE_D01_<claim>` / `REFUTE_D01_<claim>_FACT` | his 駁倒＋嫁禍 line / the fact the player knows afterwards | script / evidence |
+| `EXCL_D01_<a>_<b>_CATCH / _SELL` | contradiction: his catch / Sherefox's hard sell | script |
+| `EXCL_D01_TEMPLATE` | template for catches, `{a}` `{b}` | script |
+| `LINK_D01_<a>_<b>` | 承接 line (replaces the claim line) | script |
+| `REACT_D01_*` | his reactions: `ISSUE_OPP/METHOD/MOTIVE` (per issue), `SOPH` (any sophistry node), `<claim>` (special), `FACT_SOPH_1/2`, `LIE_SOPH`, `BLOCK`, `FOOLED`, `FOGGED` | script |
+| `SHF_D01_CUT_OPEN_1–3` | Sherefox's opener when cutting (1–2 shared, 3 this chapter) | script |
+| `TELL_D01_GESTURE_<ACTION>` | gesture text; ACTION = ASSERT (立論), PUSH (強辯), REBUT (反駁), STALL (周旋) | script |
+| `TELL_D01_<ACTION>_n` / `TELL_D01_HINT_*` | his tell lines / Arthur's hints | script |
+| `STATE_D01_ART_* / STATE_D01_SHF_*` | Arthur's and Sherefox's state lines | script |
+| `SYS_D01_*` | system lines, written as templates | script |
+| `BEAT_D01_*` | situational beats (condition in the note) | script |
+| `FOG_D01_n` | Sherefox's 打迷糊仗 lines | script |
+| `OBS_D01_W1–W3` | warm-up observation cards | evidence |
+| `SCR_D01_S<scene>_L<line>` | scene script lines (S04 and S07 in push 1) | script |
+
+## Templates and placeholders
+
+* `SYS_D01_*` rows with `{…}` are templates (note starts with `TEMPLATE`). Placeholders: `{name}` opponent name, `{hp}` `{hp_o}` `{hp_p}` `{hp_before}` `{hp_after}` credibility values, `{dmg}` `{dmg_p}` `{dmg_o}` damage, `{formula}` the damage formula text, `{issue}` `{issues}` issue names, `{n}` node count, `{c}` crack count, `{pct}` percent, `{claim}` claim label, `{fact}` a `REFUTE_D01_*_FACT`, `{gesture}` a `TELL_D01_GESTURE_*`, `{statement}` a card label or 「改口」「反駁」, `{action}` `{action1}` `{action2}` action names (UI strings), `{half}` a `CARD_D01_U*_TELL`, `{value}` 壓力／罪惡感／怒氣, `{person}` a character name, `{node}` a card label, `{chain}` card labels joined by →.
+* `EXCL_D01_TEMPLATE` uses `{a}` `{b}`; the 10 templated rows in section 7 are already filled in.
+* `BEAT_D01_REFUTED_3/4` use `{item}` (picked-up evidence name) and `{place}`.
+* Calligraphy banners (論破, 逆論破, 動搖, 破竹, 困獸, 失守) and stamps stay Chinese in both languages; their banner strings live in the v1 `ui_strings.csv`.
+
+## Conventions
+
+* Outer 「」 around whole-line quotes are removed (the speaker column carries who speaks). Stage directions in （） are kept in zh-TW and become ( ) in en.
+* Condition markers 〔…〕 from the chapter are moved to the note (`cond: …`).
+* en is empty until push 4.

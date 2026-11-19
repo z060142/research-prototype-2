@@ -1,0 +1,242 @@
+﻿ID,speaker_zh,speaker_en,zh-TW,en,note
+CARD_D01_L1_STATE,塞德里克,Cedric,我整晚守在叔叔的靈柩旁，一步也沒有離開過。,,L1 立論 (Assert)
+CARD_D01_L1_PUSH,塞德里克,Cedric,我一步都沒離開！在場的每一個人都可以作證！,,L1 強辯 (Insist)
+CARD_D01_L1_RETRACT,塞德里克,Cedric,……我也許起身添過一次蠟燭。就在靈柩旁邊。,,"L1′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L1_DOWN,塞德里克,Cedric,那、那是……我記錯了，只是去拿了一下酒杯。,,L1 knocked down by a 正論 (default reaction)
+CARD_D01_L2_STATE,塞德里克,Cedric,鎖匠下午修鎖時動了手腳。那個筒子，不用鑰匙也打得開。,,L2 立論 (Assert)
+CARD_D01_L2_PUSH,塞德里克,Cedric,他動了手腳！不然一個鎖好的筒子，怎麼會自己空掉！,,L2 強辯 (Insist)
+CARD_D01_L2_RETRACT,塞德里克,Cedric,我是說……鎖匠『可能』動了手腳。這是合理的推測。,,"L2′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L2_DOWN,塞德里克,Cedric,……一把真正的鑰匙？可、可是那把鑰匙只有叔叔才——（住口）,,L2 knocked down by a 正論 (default reaction)
+CARD_D01_L3_STATE,塞德里克,Cedric,鎖匠想拿附錄去勒索嬸嬸。有了它，他想要多少錢都行。,,L3 立論 (Assert)
+CARD_D01_L3_PUSH,塞德里克,Cedric,一個窮鎖匠，看見能換錢的東西，還需要什麼理由！,,L3 強辯 (Insist)
+CARD_D01_L3_RETRACT,塞德里克,Cedric,也許不是勒索……也許是有人僱他。總之，不是我。,,"L3′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L3_DOWN,塞德里克,Cedric,……那、那只是我的推測。,,L3 knocked down by a 正論 (default reaction)
+CARD_D01_L4_STATE,塞德里克,Cedric,燈滅的時候，我聽見後門響了一聲，有人跑了出去。,,L4 立論 (Assert)
+CARD_D01_L4_PUSH,塞德里克,Cedric,後門！我清清楚楚聽見後門的聲音！,,L4 強辯 (Insist)
+CARD_D01_L4_RETRACT,塞德里克,Cedric,也許……是風把門吹響的。,,"L4′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L4_DOWN,塞德里克,Cedric,廚、廚房裡一直有人？……那我聽到的是什麼？,,L4 knocked down by a 正論 (default reaction)
+CUT_D01_03A_L1,塞德里克,Cedric,我、我只是……去添了一次蠟燭。（之後他周旋改口時，正好接上 L1′）,,L1 cut by 03A (replaces the default knocked-down reaction)
+CUT_D01_08A_L3,塞德里克,Cedric,四、四百鎊又怎樣？那是紳士之間的帳……跟一個鎖匠有什麼關係！,,L3 cut by 08A (replaces the default knocked-down reaction)
+CUT_D01_09A_L3,塞德里克,Cedric,……叔叔的女兒？那、那又怎樣。這跟鎖匠勒索有什麼關係？,,L3 cut by 09A (replaces the default knocked-down reaction)
+CUT_D01_04C_L4,塞德里克,Cedric,只、只有廚娘？……那我聽到的是什麼？,,L4 cut by 04C (replaces the default knocked-down reaction)
+CARD_D01_F1_STATE,塞德里克,Cedric,鎖匠下午單獨碰過那個筒子，身上還帶著萬用鑰匙。這是事實。,,F1 立論 (fact in his favour)
+CARD_D01_F1_PUSH,塞德里克,Cedric,他碰過筒子，他有萬用鑰匙！這兩件事，您敢否認嗎？,,F1 強辯
+CARD_D01_F2_STATE,塞德里克,Cedric,燈滅的那三分鐘，誰都看不見誰。屋裡任何一個人，都可能離席。,,F2 立論 (fact in his favour)
+CARD_D01_F2_PUSH,塞德里克,Cedric,三分鐘的黑暗！您憑什麼只盯著我？,,F2 強辯
+CARD_D01_U1_STATE,塞德里克,Cedric,地下室那個閥門本來就鬆——（停住）,,U1 slip (fact against him); no damage when it lands
+CARD_D01_U1_PUSH,塞德里克,Cedric,那個閥門本來就鬆！輕輕一轉就……我、我是說，傭人都這麼說！,,U1 shouted while Cornered
+CARD_D01_U1_TELL,塞德里克,Cedric,地下室……,,U1 tell text: only the first half-sentence is shown
+CARD_D01_U1_CATCH,Sherefox,Sherefox,閥門鬆不鬆，只有轉過它的人才知道。塞德里克先生，你轉過它。,,Sherefox's 「抓住他的話」 on U1 (next round only)
+CARD_D01_U2_STATE,塞德里克,Cedric,……我是欠了一點錢。紳士誰不欠點錢？,,U2 slip (fact against him); no damage when it lands
+CARD_D01_U2_PUSH,塞德里克,Cedric,對，我欠錢！四百鎊！那又怎樣！,,U2 shouted while Cornered
+CARD_D01_U2_TELL,塞德里克,Cedric,錢……,,U2 tell text: only the first half-sentence is shown
+CARD_D01_U2_CATCH,Sherefox,Sherefox,欠四百鎊、月底到期的紳士，最不希望遺產少一半。,,Sherefox's 「抓住他的話」 on U2 (next round only)
+CARD_D01_P05_STATE,塞德里克,Cedric,狐狸小姐留下的這圈萬用鑰匙，我仔細看過了。這一把的齒上，沾著筒鎖裡的黃銅屑。它就是開筒子的鑰匙。,,"P05 picked-up evidence (E05 萬用鑰匙圈), 立論"
+CARD_D01_P05_PUSH,塞德里克,Cedric,黃銅屑！證據就在您留下的鑰匙上！,,P05 強辯
+CARD_D01_P05_DOWN,塞德里克,Cedric,乾、乾淨的鎖……？（把鑰匙圈放回桌上）,,P05 knocked down
+CARD_D01_P07_STATE,塞德里克,Cedric,廚房裡撿到的手帕，有機油味。鎖匠昨晚偷偷回來過——燈滅的時候，他就在這棟屋子裡。,,"P07 picked-up evidence (E07 繡字手帕), 立論"
+CARD_D01_P07_PUSH,塞德里克,Cedric,他就在屋裡！您留下的手帕說的！,,P07 強辯
+CARD_D01_P06_STATE,塞德里克,Cedric,這張工作單寫得清清楚楚：下午三點，鎖匠一個人在書房，修那個筒子。,,"P06 picked-up evidence (E06 工作單), 立論"
+CARD_D01_P06_PUSH,塞德里克,Cedric,白紙黑字！他一個人修的！,,P06 強辯
+CARD_D01_K1_STATE,塞德里克,Cedric,我、我承認我去過地下室——燈滅了，總得有人去看閥門！,,K1 last card / dying gasp; same line as SCR_D01_S07_L010
+CARD_D01_K1_DOWN,塞德里克,Cedric,書、書房的煙灰……（看著自己的手套）,,K1 cut by 04B
+REFUTE_D01_05B,塞德里克,Cedric,打不開？狐狸小姐，鎖匠自己的工作單上寫著，他就是用這圈萬用鑰匙校試筒鎖的。打得開，而且他試了三次。,,refutes claim 05B (他撿到 E06); refute + frame
+REFUTE_D01_01D,塞德里克,Cedric,沒有能打開它的東西？狐狸小姐留在門廳的這圈萬用鑰匙，是誰的？十二把，每一把都上了油。,,refutes claim 01D (他撿到 E05); refute + frame
+REFUTE_D01_06B,塞德里克,Cedric,毫無關係？那這條手帕呢？廚房爐子後面撿到的，繡著廚娘的名字，沾著機油。鎖匠昨晚偷偷回來了——燈滅的時候，他就在屋裡。,,refutes claim 06B (他撿到 E07); refute + frame
+REACT_D01_FACT_SOPH_1,塞德里克,Cedric,荒謬。您明知道那是事實。,,"his true fact knocked down by sophistry (2 lines, alternate)"
+REACT_D01_FACT_SOPH_2,塞德里克,Cedric,狐狸小姐，您就這樣把事實踩在腳下？,,"his true fact knocked down by sophistry (2 lines, alternate)"
+REACT_D01_LIE_SOPH,塞德里克,Cedric,多麼精采的故事。可惜，只是故事。,,his lie knocked down by sophistry
+EXCL_D01_TEMPLATE,塞德里克,Cedric,您剛才說{a}，現在又說{b}？狐狸小姐，您到底要哪一種？,,"TEMPLATE for contradiction catches; {a} = gist of the earlier claim, {b} = gist of the new one. Section 7 rows are the filled versions"
+REACT_D01_BLOCK,塞德里克,Cedric,這說明不了什麼。,,his rebuttal blocked a 正論 (no refute)
+REACT_D01_FOOLED,塞德里克,Cedric,……您在說什麼？,,his rebuttal missed
+REACT_D01_FOGGED,塞德里克,Cedric,您是來論戰的，還是來聊天的？,,player chose 打迷糊仗
+SHF_D01_CUT_OPEN_1,Sherefox,Sherefox,等一下！,,"Sherefox's opener when cutting (shared, all chapters)"
+SHF_D01_CUT_OPEN_2,Sherefox,Sherefox,就是那一句。,,"Sherefox's opener when cutting (shared, all chapters)"
+SHF_D01_CUT_OPEN_3,Sherefox,Sherefox,這三分鐘，你走得太遠了。,,Sherefox's opener when cutting (this chapter)
+EXCL_D01_01A_01B_CATCH,塞德里克,Cedric,您剛才說鎖被動過手腳，現在又說鎖完好？,,contradiction 01A/01B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01A_01B_SELL,Sherefox,Sherefox,我是說，它被動過『想法』。,,contradiction 01A/01B: Sherefox's hard sell
+EXCL_D01_01B_06A_CATCH,塞德里克,Cedric,您剛才說鎖被動過手腳，現在又說鎖匠修好了？,,contradiction 01B/06A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01B_06A_SELL,Sherefox,Sherefox,修好之後，又被別人動了嘛。,,contradiction 01B/06A: Sherefox's hard sell
+EXCL_D01_02A_02B_CATCH,塞德里克,Cedric,您剛才說鐘是自己走的，現在又說有人撞到它？,,contradiction 02A/02B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_02A_02B_SELL,Sherefox,Sherefox,鐘也會被嚇醒的。,,contradiction 02A/02B: Sherefox's hard sell
+EXCL_D01_05A_05B_CATCH,塞德里克,Cedric,您剛才說萬用鑰匙打不開，現在又說它們上了油轉得動？,,contradiction 05A/05B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_05A_05B_SELL,Sherefox,Sherefox,轉得動，不代表打得開！,,contradiction 05A/05B: Sherefox's hard sell
+EXCL_D01_01D_05A_CATCH,塞德里克,Cedric,您剛才說鎖匠手上沒有能開鎖的東西，現在又拿出他的萬用鑰匙？,,contradiction 01D/05A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01D_05A_SELL,Sherefox,Sherefox,我是說……沒有『合法』的東西。,,contradiction 01D/05A: Sherefox's hard sell
+EXCL_D01_04C_07A_CATCH,塞德里克,Cedric,您剛才說廚房裡只有廚娘，現在又說鎖匠也在？,,contradiction 04C/07A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_04C_07A_SELL,Sherefox,Sherefox,瑪莎……很會藏人。,,contradiction 04C/07A: Sherefox's hard sell
+EXCL_D01_04C_07B_CATCH,塞德里克,Cedric,您剛才說廚房裡只有廚娘，現在又說鎖匠是為了她溜回來的？,,contradiction 04C/07B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_04C_07B_SELL,Sherefox,Sherefox,我、我更正。,,contradiction 04C/07B: Sherefox's hard sell
+EXCL_D01_06A_06C_CATCH,塞德里克,Cedric,您剛才說他沒動過鎖芯，現在又說他換了彈簧？,,contradiction 06A/06C: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_06A_06C_SELL,Sherefox,Sherefox,彈簧……不算鎖芯吧？,,contradiction 06A/06C: Sherefox's hard sell
+EXCL_D01_06B_07A_CATCH,塞德里克,Cedric,剛才您說鎖匠昨晚根本不在屋裡、跟這件事毫無關係，現在又說他整晚待在廚房？狐狸小姐，您的鎖匠，會分身嗎？,,contradiction 06B/07A: Cedric's catch (unique line)
+EXCL_D01_06B_07A_SELL,Sherefox,Sherefox,……我修正一下。紳士也會改錯字吧？,,contradiction 06B/07A: Sherefox's hard sell
+EXCL_D01_06B_07B_CATCH,塞德里克,Cedric,您剛才說鎖匠根本不在屋裡，現在又說他是為了廚娘溜回來？,,contradiction 06B/07B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_06B_07B_SELL,Sherefox,Sherefox,他……回來得很安靜。,,contradiction 06B/07B: Sherefox's hard sell
+EXCL_D01_09A_09B_CATCH,塞德里克,Cedric,您剛才說那只是紀念品，現在又說她是叔叔的女兒？,,contradiction 09A/09B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_09A_09B_SELL,Sherefox,Sherefox,紀念品，也可以紀念血緣。,,contradiction 09A/09B: Sherefox's hard sell
+LINK_D01_05A_01C,Sherefox,Sherefox,萬用鑰匙全上了油，不上油轉不動——可是筒鎖裡乾乾淨淨。打開它的，不是這圈鑰匙。,,link line 05A → 01C (replaces the claim line; ×1.2)
+LINK_D01_02A_03A,Sherefox,Sherefox,座鐘在熄燈時走了起來，鏡子的黑布也在那時掉了。那三分鐘，書房裡有人。,,link line 02A ↔ 03A (replaces the claim line; ×1.2)
+LINK_D01_02A_04B,Sherefox,Sherefox,書房的鐘在熄燈時被撞醒，總閥上沾著書房的煙灰。關燈的人，中間去了一趟書房。,,link line 02A ↔ 04B (replaces the claim line; ×1.2)
+LINK_D01_02C_08B,Sherefox,Sherefox,鐘停在九點四十分，那一刻他在叫你。而那一晚，你在俱樂部——催款信上的日期，就是那一天。,,link line 02C → 08B (replaces the claim line; ×1.2)
+LINK_D01_10A_08A,Sherefox,Sherefox,附錄讓你少了一半遺產。而你欠四百鎊，月底到期。,,link line 10A ↔ 08A (replaces the claim line; ×1.2)
+LINK_D01_09A_10A,Sherefox,Sherefox,一半的遺產，留給了一個你每天使喚的女僕。,,link line 09A ↔ 10A (replaces the claim line; ×1.2)
+LINK_D01_11A_11B,Sherefox,Sherefox,燈滅前，你的椅子空了；燈亮時，你站在走廊口，手套沾著灰。,,link line 11A → 11B (replaces the claim line; ×1.2)
+REACT_D01_ISSUE_OPP,塞德里克,Cedric,三分鐘的黑暗裡，您倒是看得很清楚。,,reaction: 依爭點・機 / 機的正論（無專屬者）
+REACT_D01_ISSUE_METHOD,塞德里克,Cedric,鎖、鑰匙、筒子——您說得頭頭是道。可惜，我對鎖沒有興趣。,,reaction: 依爭點・法 / 法的正論（無專屬者）
+REACT_D01_ISSUE_MOTIVE,塞德里克,Cedric,錢？每個人都需要錢，狐狸小姐。,,reaction: 依爭點・動 / 動的正論（無專屬者）
+REACT_D01_SOPH,塞德里克,Cedric,這種說法，連鄉下人都不會信。,,reaction: 詭辯接上（共用） / 任何詭辯節
+REACT_D01_01B,塞德里克,Cedric,（微笑，鬆了口氣）動了手腳的鎖——對，我也是這麼說的。,,reaction: 專屬 / 01B
+REACT_D01_06B,塞德里克,Cedric,鎖匠毫無關係？那您倒是說說，誰有關係。,,reaction: 專屬 / 06B
+REACT_D01_02C,塞德里克,Cedric,（手指停在懷錶鏈上）……那晚的事，與本案無關。,,reaction: 專屬（心結） / 02C
+REACT_D01_08B,塞德里克,Cedric,（臉色一白）那天我在俱樂部，那又怎樣。叔叔他……他不會等我的。,,reaction: 專屬（心結） / 08B
+REACT_D01_03B,塞德里克,Cedric,（下意識別開視線，避開書房的方向）鏡子？一塊布掉了而已。您想說什麼？,,reaction: 專屬（弱點） / 03B
+REACT_D01_09A_1,塞德里克,Cedric,（看了艾琳一眼，冷笑）原來如此，叔叔的小秘密。狐狸小姐，您在靈堂上說這種話，嬸嬸會感謝您嗎？,,"reaction to 09A (private matter), part 1"
+REACT_D01_09A_2,海德太太,Mrs Hyde,……偵探小姐。,,"reaction to 09A (private matter), part 2"
+REACT_D01_09A_3,艾琳,Irene,（托盤掉在地上）,,"reaction to 09A (private matter), part 3"
+REACT_D01_P1A,塞德里克,Cedric,（呼吸停了一拍，指尖捏緊懷錶鏈上的護身符）……把那東西收起來。這是靈堂，不是沙龍。,,reaction: 專屬（心理牌） / P1A
+REACT_D01_P1B,塞德里克,Cedric,（猛地站起來，椅子倒在地上）夠了！指示板是妳的手推的！……是妳推的，對吧？,,reaction: 專屬（心理牌） / P1B
+REACT_D01_12A,塞德里克,Cedric,（看了花圈一眼）……嬸嬸花了不少錢。,,reaction: 專屬 / 12A
+TELL_D01_GESTURE_ASSERT,（演出）,(Staging),整理黑領巾、微微一笑,,gesture text for 立論
+TELL_D01_GESTURE_PUSH,（演出）,(Staging),摘下手套拍在桌上,,gesture text for 強辯
+TELL_D01_GESTURE_REBUT,（演出）,(Staging),十指相抵、身體往後靠,,gesture text for 反駁
+TELL_D01_GESTURE_STALL,（演出）,(Staging),摸懷錶鏈上的護身符,,gesture text for 周旋
+TELL_D01_ASSERT_1,塞德里克,Cedric,請容我把話說清楚。,,預兆台詞
+TELL_D01_PUSH_1,塞德里克,Cedric,夠了。,,預兆台詞
+TELL_D01_PUSH_2,塞德里克,Cedric,我受夠這場鬧劇了。,,預兆台詞
+TELL_D01_REBUT_1,塞德里克,Cedric,請說，我洗耳恭聽。,,預兆台詞
+TELL_D01_REBUT_2,塞德里克,Cedric,您確定要這麼說？,,預兆台詞
+TELL_D01_STALL_1,塞德里克,Cedric,我想，我們都需要冷靜一下。,,預兆台詞
+TELL_D01_HINT_ASSERT,亞瑟,Arthur,他在整理領巾。要開口了。,,亞瑟的預兆提示
+TELL_D01_HINT_PUSH,亞瑟,Arthur,他摘手套了——準備接住。,,亞瑟的預兆提示
+TELL_D01_HINT_REBUT,亞瑟,Arthur,他在等妳先說。別亂拉線。,,亞瑟的預兆提示
+TELL_D01_HINT_STALL,亞瑟,Arthur,他又在摸那個錶鏈……在拖時間。現在說我們的。,,亞瑟的預兆提示
+STATE_D01_ART_HACHIKU,亞瑟,Arthur,漂亮，讀對了。,,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_CORNERED,亞瑟,Arthur,他被逼到牆角了，接下來每一句都會很重——但也很好認。,,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_BREACHED,亞瑟,Arthur,先站穩，下一手用正論，我陪妳撐過去。,,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_COVER,亞瑟,Arthur,等一下，各位！她的意思是——（打圓場）,,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_SHF_HACHIKU_1,Sherefox,Sherefox,一分鐘。,,Sherefox 的狀態台詞
+STATE_D01_SHF_HACHIKU_2,Sherefox,Sherefox,兩分鐘。,,Sherefox 的狀態台詞
+STATE_D01_SHF_HACHIKU_3,Sherefox,Sherefox,三分鐘，剛剛好——勢如破竹！,,Sherefox 的狀態台詞
+STATE_D01_SHF_BREAK,Sherefox,Sherefox,三分鐘的黑暗，到此為止！,,Sherefox 的狀態台詞
+STATE_D01_SHF_SHAKEN,Sherefox,Sherefox,燈亮了，塞德里克先生。,,Sherefox 的狀態台詞
+STATE_D01_SHF_BREACHED,Sherefox,Sherefox,……嗚，被看穿了。,,Sherefox 的狀態台詞
+SYS_D01_TELL_CLEAR,系統,System,（預兆・明示）{gesture}。論點：{statement}。{action}。,,"TEMPLATE; clear tell; {gesture} = TELL_D01_GESTURE_*, {statement} = his card's short label or 「改口」「反駁」, {action} = action name"
+SYS_D01_TELL_VAGUE,系統,System,（預兆）{gesture}。論點：{statement}。可能行動：{action1}／{action2}。,,"TEMPLATE; vague tell, no rule points either way"
+SYS_D01_TELL_VAGUE_LIKELY,系統,System,（預兆）{gesture}。論點：{statement}。可能行動：{action1}（較可能）／{action2}。,,"TEMPLATE; vague tell, {action1} is what a behaviour rule points to"
+SYS_D01_TELL_SLIP,系統,System,（預兆）{name}張了張口，又閉上。論點：{half},,TEMPLATE; tell before a slip; {half} = CARD_D01_U*_TELL
+SYS_D01_ATTACH,系統,System,接上一節（{issue}）。論證 {formula} ＝ {dmg}。,,TEMPLATE; player's node lands; {formula} e.g. 12 × 1.0 × 破竹 1.1 × 破防 1.25
+SYS_D01_STALL_HEAL,系統,System,{name}周旋回復 5，{hp_before} → {hp_after}。,,TEMPLATE; opponent stalled and healed
+SYS_D01_CLASH,系統,System,互相接上。我方論證 {dmg_p} → {hp_o}。{name}論證 {dmg_o} → 我方 {hp_p}。,,TEMPLATE; both nodes land
+SYS_D01_HACHIKU_KEEP,系統,System,破竹維持。,,appended after a clash when the 破竹 stack is kept
+SYS_D01_SLIP_NODMG,系統,System,不利的事實接上時不造成論證，我方維持 {hp_p}。,,"TEMPLATE; his slip landed (no damage, rule 0.5)"
+SYS_D01_CUT_OK,系統,System,截斷成功！{name} −{dmg} → {hp}，陷入破防。,,TEMPLATE; player cut his line
+SYS_D01_CUT_PUSH,系統,System,截斷強辯！{name} −{dmg} → {hp}，陷入破防。,,TEMPLATE; player cut an Insist (−30)
+SYS_D01_CUT_SOPH,系統,System,截斷成功（同爭點的詭辯）。{name} −{dmg} → {hp}，陷入破防。紀錄留 1 道裂紋。,,TEMPLATE; sophistry cut
+SYS_D01_DENY_FACT,系統,System,否定事實 1 次。,,appended when a sophistry cut knocks down a true fact
+SYS_D01_KEY_NORMAL,系統,System,（要害論點；他可信度高於 50% 且原本沒有破防，算一般截斷。）,,keystone cut that does not Break
+SYS_D01_KEY_BREAK,系統,System,截斷要害論點，且{name}處於破防——論破！,,TEMPLATE; keystone cut that Breaks
+SYS_D01_CUT_EMPTY,系統,System,落空。他沒有開口。我方 −5；下回合他的立論無法被截斷。,,player cut while he stalled
+SYS_D01_MISS_FACT,系統,System,落空。他的論點是事實，打不掉。我方 −10 → {hp}。他的論點照常接上。,,TEMPLATE; player cut a true fact with a 正論
+SYS_D01_MISS_WRONG,系統,System,落空。這句話駁不倒他的論點。我方 −5 → {hp}。他的論點照常接上。,,TEMPLATE; player cut a lie with a 正論 that does not break it
+SYS_D01_BOTH_REBUT,系統,System,雙方都在等對方開口。互相落空，各 −5。,,rebuttal vs rebuttal
+SYS_D01_BLOCKED,系統,System,被擋下。這一節沒有接上。,,his rebuttal blocked a 正論
+SYS_D01_FOOLED,系統,System,{name}的反駁落空！−5 → {hp}，陷入破防。下回合預兆明示。,,TEMPLATE; player's 打迷糊仗 baited his rebuttal
+SYS_D01_FOG_TAKE,系統,System,他接上一節。打迷糊仗減半：我方 −{dmg} → {hp}。,,TEMPLATE; 打迷糊仗 vs his Assert
+SYS_D01_FOG_STALL,系統,System,僵持。旁觀者不耐，雙方各 −3。,,打迷糊仗 vs Stall
+SYS_D01_FOG_REPEAT,系統,System,旁觀者不耐煩了。打迷糊仗不再有效，我方 −3。,,second 打迷糊仗 in a row
+SYS_D01_EXPOSED,系統,System,被拆穿！我方 −25 → {hp}。紀錄留 1 道裂紋。連擊歸零。,,TEMPLATE; his rebuttal caught a sophistry node
+SYS_D01_REFUTED,系統,System,被駁倒！{name}握有妳不知道的資訊。我方 −15 → {hp}。說法 {claim} 本場作廢。連擊歸零。,,TEMPLATE; his rebuttal refuted a sincere-but-wrong claim
+SYS_D01_NOW_KNOWN,系統,System,妳現在知道：{fact}。,,TEMPLATE; {fact} = REFUTE_D01_*_FACT
+SYS_D01_BREACH_HINT,系統,System,失守會持續到妳下一次讀對為止。,,shown when 失守 starts (also as the UI hint 「讀對一次才能站穩」)
+SYS_D01_CRACK,系統,System,這一節帶 1 道裂紋。,,sophistry node landed
+SYS_D01_REDCRACK,系統,System,紅色裂紋：我方 −10 → {hp}，紀錄留 1 道裂紋（共 {c}）。,,TEMPLATE; player chose a claim that contradicts her own record
+SYS_D01_PSYCH_NOTE,系統,System,（心理牌的節照詭辯結算，但不計裂紋；社會聲譽 −2。）,,psych card used
+SYS_D01_PRIVATE,系統,System,（公開私事：社會聲譽 −3，{person}好感 −1）,,TEMPLATE; private matter exposed
+SYS_D01_PSYCH_CROSS,系統,System,{name}的{value}越過了門檻。,,TEMPLATE; {value} = 壓力 / 罪惡感 / 怒氣
+SYS_D01_CHAIN_NOBREAK,系統,System,我方的鏈 {n} 節，但{name}沒有破防，不構成論破。,,TEMPLATE; chain long enough but no 破防
+SYS_D01_CHAIN_READY,系統,System,我方的鏈 {n} 節，涵蓋 {issues}，且{name}處於破防。,,TEMPLATE; Break conditions met (followed by STATE_D01_SHF_BREAK and SCR_D01_S07_L005)
+SYS_D01_LASTCARD_REMOVE,系統,System,我方紀錄上帶裂紋的 {n} 節被打掉，連擊與破竹歸零。,,TEMPLATE; last card removes cracked nodes
+SYS_D01_LASTCARD_HIT,系統,System,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。{name}回復到上限的 {pct}%（{hp_o}），鎖定解除。,,TEMPLATE; last card hits
+SYS_D01_LASTCARD_NOHEAL,系統,System,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。,,TEMPLATE; last card hits and ends the debate
+SYS_D01_DESPERATE_HIT,系統,System,垂死反撲打中，我方 −10 → {hp}。,,"TEMPLATE; K1 as dying gasp hits (no heal, no grade change)"
+SYS_D01_CUT_WIN,系統,System,截斷成功。論戰勝利。,,endgame cut succeeds
+SYS_D01_ZERO_WIN,系統,System,{name}的可信度歸零。他已經沒有最後一張牌。論戰勝利。,,TEMPLATE; second endgame
+SYS_D01_REV_READY,系統,System,{name}的鏈 {n} 節，涵蓋 {issues}，且妳處於失守。,,TEMPLATE; Reverse Break conditions met
+SYS_D01_REVERSE,系統,System,逆論破！妳的可信度降到 1。下一回合，妳可以打出自己的最後一張牌：一個能駁倒他鏈上某個謊言的正論。,,Reverse Break
+SYS_D01_LASTSTAND_PROMPT,系統,System,{name}的鏈：{chain}。選一個能駁倒其中一句的正論。,,TEMPLATE; 7.5 prompt; {chain} = his card labels joined with →
+SYS_D01_LASTSTAND_OK,系統,System,駁倒成功！{name}的「{node}」與其後的節全毀。妳回復到 {hp}。,,TEMPLATE; 7.5 success
+SYS_D01_LASTSTAND_FAIL,系統,System,駁倒失敗。,,7.5 failure (followed by SCR_D01_S07_L016)
+SYS_D01_COVER,系統,System,亞瑟出面打圓場！這一回合的傷害與失守取消。,,援護 triggered (after STATE_D01_ART_COVER)
+SYS_D01_COVER_WASTED,系統,System,援護沒有用上。,,援護 set but nothing happened
+SYS_D01_DISMANTLE,系統,System,拆台成功！移除{name}鏈上的「{node}」，他受 10。,,TEMPLATE; dismantle
+SYS_D01_WIN,系統,System,論戰勝利。,,generic win line
+BEAT_D01_CLASH_1,塞德里克,Cedric,您——,,"clash split screen, his half"
+BEAT_D01_CLASH_2,Sherefox,Sherefox,——我先說完。,,"clash split screen, her half"
+BEAT_D01_07A_1,瑪莎,Martha,（摀住嘴）,,when 07A lands or cuts
+BEAT_D01_07A_2,布里格斯,Briggs,……對不起，瑪莎。,,when 07A lands or cuts
+BEAT_D01_P1A_1,（演出）,(Staging),（靈堂裡一片安靜。窗縫吹進一陣風，蠟燭的火苗歪了一下。）,,first use of the ouija board
+BEAT_D01_P1A_2,亞瑟,Arthur,（小聲）Sherefox，妳真的把它帶來了……,,first use of the ouija board
+BEAT_D01_02C_1,海德太太,Mrs Hyde,（低下頭）,,when 02C lands
+BEAT_D01_GUILT_1,亞瑟,Arthur,（小聲）他……在發抖。,,罪惡感 crosses
+BEAT_D01_ANGER_1,塞德里克,Cedric,（站起來，手套摔在桌上）夠了。我受夠這場鬧劇了。,,怒氣 crosses
+BEAT_D01_SOPH_06B_1,亞瑟,Arthur,（小聲）可是那條手帕……,,06B used while E07 is carried
+BEAT_D01_SOPH_06C_1,亞瑟,Arthur,（翻著工作單，小聲）……上面明明寫著換新彈簧。,,06C used
+BEAT_D01_SOPH_03C_1,亞瑟,Arthur,（小聲）Sherefox，我們剛剛才鑑定過……,,generic: sophistry that contradicts an appraisal
+BEAT_D01_REDCRACK_1,亞瑟,Arthur,（看到紅色裂紋）Sherefox，這句跟妳一開始說的對不上——,,player hovers a red-crack claim
+BEAT_D01_09A_1,亞瑟,Arthur,Sherefox，那是艾琳的——,,player selects E09 for 09A
+BEAT_D01_LASTCARD_1,亞瑟,Arthur,那是……我們留在門廳的鑰匙圈！,,P05 last card tell
+BEAT_D01_LASTCARD_2,巴斯克維爾,Inspector Baskerville,這、這……狐狸小姐？,,P05 last card when c ≥ 1
+BEAT_D01_LASTCARD_3,巴斯克維爾,Inspector Baskerville,黃銅屑！本、本警督就說嘛！,,P05 last card when c = 0
+BEAT_D01_LASTCARD_4,塞德里克,Cedric,還有，您剛才說的那些話——這屋子裡的每個人都聽見了，那些都不是真的。,,appended to P05 when c ≥ 1
+BEAT_D01_LASTCARD_5,Sherefox,Sherefox,……嗚，被看穿了。,,after a last card hits (same as STATE_D01_SHF_BREACHED)
+BEAT_D01_LASTCARD_6,亞瑟,Arthur,先站穩。他剩下的話，一句一句拆。,,after a last card hits and the debate goes on
+BEAT_D01_REFUTED_1,布里格斯,Briggs,我……,,06B or 04C refuted via E07
+BEAT_D01_REFUTED_2,瑪莎,Martha,（摀住臉）,,06B or 04C refuted via E07
+BEAT_D01_REFUTED_3,Sherefox,Sherefox,{item}……？,,TEMPLATE; after any refute; {item} = the picked-up evidence name
+BEAT_D01_REFUTED_4,亞瑟,Arthur,（翻筆記）……{place}，我們撿到了，可是沒帶上來。,,TEMPLATE; after any refute; {place} = where it was found
+BEAT_D01_REVERSE_1,塞德里克,Cedric,狐狸小姐，您今天說的話，連您自己都接不起來。,,Reverse Break
+BEAT_D01_LASTSTAND_FAIL_1,塞德里克,Cedric,那句話，不在我的鏈上。,,7.5 failure
+BEAT_D01_GIVEUP_1,系統,System,塞德里克沒有再開口。,,same as SCR_D01_S07_L007
+TELL_D01_HINT_FACT,亞瑟,Arthur,這句……是真的。打不掉。,,Arthur hint when his line is a true fact
+TELL_D01_HINT_SLIP,亞瑟,Arthur,他的話……沒說完。,,Arthur hint before a slip
+TELL_D01_HINT_KEY,亞瑟,Arthur,這是他整套說法的地基！,,Arthur hint when the keystone L2 is on the tell
+TELL_D01_HINT_LAST,亞瑟,Arthur,他要翻供。妳手上有能堵住這句話的東西嗎？,,Arthur hint on the last card
+TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,,Arthur hint when nothing carried can cut his line
+FOG_D01_1,Sherefox,Sherefox,說到守靈——塞德里克先生，你知道為什麼窗戶要留一道縫嗎？聽說是給靈魂走的。不過我猜，也可以給煤氣味走。,,打迷糊仗 line
+FOG_D01_2,Sherefox,Sherefox,塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？,,打迷糊仗 line
+FOG_D01_3,Sherefox,Sherefox,刮痕啊……說到刮痕，你的鞋跟也磨得好厲害喔。,,打迷糊仗 line
+SCR_D01_S04_L001,系統,System,熱身論戰：巴斯克維爾警督。指出他的錯誤，答錯 3 次即結束。,,
+SCR_D01_S04_L002,巴斯克維爾,Inspector Baskerville,論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！（正解：W1）,,
+SCR_D01_S04_L003,Sherefox,Sherefox,拿走附錄的人，還有空把筒子重新鎖好。動過手腳的鎖，用不著鎖回去。,,cond: 選 W1
+SCR_D01_S04_L004,巴斯克維爾,Inspector Baskerville,鎖、鎖回去了？……也、也許他是個愛乾淨的小偷！,,cond: 選 W1
+SCR_D01_S04_L005,巴斯克維爾,Inspector Baskerville,狐狸小姐，妳答的跟本警督問的根本不是同一件事！,,cond: 選錯
+SCR_D01_S04_L006,巴斯克維爾,Inspector Baskerville,論點二！附錄一定還在他身上，只要搜到，本警督就結案！（正解：W2）,,
+SCR_D01_S04_L007,Sherefox,Sherefox,您已經搜過他了，警督。附錄不在他身上。,,cond: 選 W2
+SCR_D01_S04_L008,巴斯克維爾,Inspector Baskerville,……本警督當然知道！本警督只是在確認妳有沒有在聽！,,cond: 選 W2
+SCR_D01_S04_L009,巴斯克維爾,Inspector Baskerville,論點三！全屋的燈一起滅，一定是他在屋外剪了煤氣管！（正解：W3）,,
+SCR_D01_S04_L010,Sherefox,Sherefox,燈是一起暗、一起亮的。管子剪斷了，燈不會自己亮回來——有人在屋裡轉了總閥。,,cond: 選 W3
+SCR_D01_S04_L011,巴斯克維爾,Inspector Baskerville,屋、屋裡？……地下室！本警督正要派人去地下室看！,,cond: 選 W3
+SCR_D01_S04_L012,巴斯克維爾,Inspector Baskerville,咳！鎖匠先暫時看管，不移送。整棟房子妳要查就查，鎖匠的東西本警督放在門廳的箱子裡，妳要看自己去看。,,cond: 成功
+SCR_D01_S04_L013,巴斯克維爾,Inspector Baskerville,……狐狸小姐，今天這三題，本警督給妳及格。（警督好感 +1）,,cond: 成功・零失誤
+SCR_D01_S04_L014,巴斯克維爾,Inspector Baskerville,夠了！說錯三次，還想在本警督的現場指手畫腳？潘德爾頓小子，你給我過來幫忙抄筆錄！（警督好感 −1；本章鑑定次數 2 → 1）,,cond: 失敗
+SCR_D01_S04_L015,亞瑟,Arthur,……抱歉，Sherefox，我只能幫妳鑑定一樣東西了。,,cond: 失敗
+SCR_D01_S07_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),中午，靈堂。海德太太、艾琳、瑪莎、布里格斯都到了。警督站在門口，塞德里克坐在靈柩旁那張靠走廊的椅子上，像是他從沒離開過。,,
+SCR_D01_S07_L002,塞德里克,Cedric,狐狸小姐，請吧。我很好奇，您要怎麼替一個帶著萬用鑰匙的鎖匠脫罪。,,
+SCR_D01_S07_L003,Sherefox,Sherefox,我不替誰脫罪，塞德里克先生。我只替昨晚那三分鐘作證。,,
+SCR_D01_S07_L004,系統,System,論戰開始。對手：塞德里克・海德。雙方同時出招。,,
+SCR_D01_S07_L005,系統,System,論破！塞德里克的推理鏈全毀，可信度降到 1 並鎖定。進入殘局。,,cond: 論破
+SCR_D01_S07_L006,系統,System,塞德里克的可信度見底，鎖定在 1。進入殘局。,,cond: 對手可信度將歸零
+SCR_D01_S07_L007,系統,System,塞德里克沒有再開口。,,cond: 殘局・罪惡感越過門檻
+SCR_D01_S07_L008,塞德里克,Cedric,……那天晚上，他叫了我好幾次。我聽到了，在牌桌上，我想，再一把就回去。……附錄在書房的壁爐裡。我本來想燒掉的。,,cond: 殘局・放棄
+SCR_D01_S07_L009,系統,System,塞德里克還想說最後一句話。（垂死反撲）,,cond: 殘局・c ＝ 0 且沒撿到證物
+SCR_D01_S07_L010,塞德里克,Cedric,我、我承認我去過地下室——燈滅了，總得有人去看閥門！,,cond: 垂死反撲／最後一張牌 K1 的預兆
+SCR_D01_S07_L011,系統,System,塞德里克打出最後一張牌。,,cond: 最後一張牌
+SCR_D01_S07_L012,系統,System,亞瑟和警員拆開書房壁爐的通風閥，從裡面拉出一卷燻黑了邊的紙。,,cond: 勝利・收尾演出
+SCR_D01_S07_L013,亞瑟,Arthur,附錄。還在。,,cond: 勝利
+SCR_D01_S07_L014,巴斯克維爾,Inspector Baskerville,塞德里克・海德！以竊取遺囑的罪名——咳——跟本警督走一趟！布里格斯，你、你可以回家了！,,cond: 勝利
+SCR_D01_S07_L015,塞德里克,Cedric,（經過書房門口時停下，沒有往裡看）……把鏡子蓋上。拜託。,,cond: 勝利・離場前
+SCR_D01_S07_L016,系統,System,論戰敗北。,,cond: 敗北
+SCR_D01_S07_L017,巴斯克維爾,Inspector Baskerville,好了！鎖匠移送！狐狸小姐，下次查案，記得把東西帶齊！,,cond: 敗北
+SCR_D01_S07_L018,塞德里克,Cedric,嬸嬸，我會請律師處理遺產的事。……書房我來整理就好。,,cond: 敗北
+SCR_D01_S07_L019,旁白（亞瑟筆記）,Narration (Arthur's Notes),那天晚上，海德宅的書房壁爐，冒了一次煙。,,cond: 敗北

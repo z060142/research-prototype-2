@@ -1,0 +1,85 @@
+﻿ID,zh-TW,en,note
+ISSUE_D01_OPP,機會,,issue name
+ISSUE_D01_OPP_SHORT,機,,issue short label (chain colour chip)
+ISSUE_D01_METHOD,手法,,issue name
+ISSUE_D01_METHOD_SHORT,法,,issue short label (chain colour chip)
+ISSUE_D01_MOTIVE,動機,,issue name
+ISSUE_D01_MOTIVE_SHORT,動,,issue short label (chain colour chip)
+CLM_D01_01A,筒鎖完好，用真鑰匙開,,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01A_LINE,筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。,,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01B,筒鎖被動過手腳,,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01B_LINE,筒鎖被人動過手腳——可是動手腳的，不是只會修鎖的布里格斯。,,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01C,鎖芯裡沒有油,,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01C_LINE,筒鎖裡乾乾淨淨，一滴油都沒有。上了油的鑰匙，沒有碰過這把鎖。,,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01D,鎖匠沒有能開鎖的東西,,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01D_LINE,筒鎖是好鎖，布里格斯修好之後也沒有留備用鑰匙——他手上，根本沒有能打開它的東西。,,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_02A,座鐘在熄燈時重新走動,,claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02A_LINE,書房的鐘本來停在九點四十分。它在熄燈的那三分鐘裡重新走了起來——那時候，有人在書房裡撞到了壁爐架。,,claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_02B,座鐘是自己擺起來的,,claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02B_LINE,老座鐘停久了，屋子一震就會自己擺起來。它慢了一個多小時，跟熄燈沒有關係。,,claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_02C,九點四十分，他在叫你,,claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02C_LINE,這座鐘停在九點四十分，海德先生嚥氣的那一刻。那時候他一直在叫一個人的名字——塞德里克先生，你在哪裡？,,claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_03A,黑布上的守靈白蠟,,claim short label; evidence E03 黑布; issue 機
+CLM_D01_03A_LINE,書房鏡子的黑布上，滴著一滴還沒乾透的白蠟——守靈用的蠟燭。靠走廊那張椅子旁的燭台，是空的。燈滅的時候，有人從那個位子拿著蠟燭，進了書房。,,claim spoken line (Sherefox); evidence E03 黑布; issue 機
+CLM_D01_03B,沒人敢把黑布蓋回去,,claim short label; evidence E03 黑布; issue 機
+CLM_D01_03B_LINE,黑布是被碰掉的，可是沒有人把它蓋回去。在守靈夜讓鏡子就這樣敞著——那個人，連回頭看一眼都不敢。,,claim spoken line (Sherefox); evidence E03 黑布; issue 機
+CLM_D01_04A,總閥被人關小,,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04A_LINE,總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。,,claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_04B,閥輪上是書房的煙灰,,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04B_LINE,閥輪上沾的是書房壁爐的煙灰。關燈的人先去了書房，再回到地下室把燈打開——他從頭到尾都在屋裡。,,claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_04C,廚房裡只有瑪莎,,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04C_LINE,燈滅的時候，後門一直關著，地下室的廚房裡只有瑪莎一個人——沒有人從後門跑出去。,,claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_05A,萬用鑰匙全上了油,,claim short label; evidence E05 萬用鑰匙; issue 法
+CLM_D01_05A_LINE,布里格斯的萬用鑰匙，每一把都上了油。不上油，它們轉不動。,,claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
+CLM_D01_05B,萬用鑰匙打不開筒子,,claim short label; evidence E05 萬用鑰匙; issue 法
+CLM_D01_05B_LINE,這種圈子上的萬用鑰匙，連一般的門都很難打開，何況是黃銅筒。,,claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
+CLM_D01_06A,鎖已修妥，沒留後門,,claim short label; evidence E06 工作單; issue 法
+CLM_D01_06A_LINE,工作單寫著：換新彈簧，當著主人的面試開三次，修妥。鎖修好了，沒有留後門。,,claim spoken line (Sherefox); evidence E06 工作單; issue 法
+CLM_D01_06B,鎖匠傍晚就走了,,claim short label; evidence E06 工作單; issue 機
+CLM_D01_06B_LINE,工作單寫著五點收工。布里格斯傍晚就走了，守靈夜根本不在屋裡——他跟這件事毫無關係。,,claim spoken line (Sherefox); evidence E06 工作單; issue 機
+CLM_D01_06C,工作單只寫「校試」,,claim short label; evidence E06 工作單; issue 法
+CLM_D01_06C_LINE,工作單上寫的是『校試』，不是『修理』——布里格斯根本沒動過那個筒子的鎖芯。,,claim spoken line (Sherefox); evidence E06 工作單; issue 法
+CLM_D01_07A,鎖匠在廚房見瑪莎,,claim short label; evidence E07 手帕; issue 機
+CLM_D01_07A_LINE,這條手帕掉在廚房爐子後面，有機油味，繡著廚娘瑪莎的縮寫。布里格斯晚上偷偷回來見她——燈滅的時候，他就在後門邊的廚房，沒有人從後門跑出去。,,claim spoken line (Sherefox); evidence E07 手帕; issue 機
+CLM_D01_07B,鎖匠是為瑪莎回來的,,claim short label; evidence E07 手帕; issue 動
+CLM_D01_07B_LINE,布里格斯冒險溜回來，是為了瑪莎，不是為了什麼附錄。,,claim spoken line (Sherefox); evidence E07 手帕; issue 動
+CLM_D01_08A,四百鎊的賭債,,claim short label; evidence E08 催款信; issue 動
+CLM_D01_08A_LINE,梅費爾俱樂部，四百鎊，月底前還清。需要錢的人，是你。,,claim spoken line (Sherefox); evidence E08 催款信; issue 動
+CLM_D01_08B,叔叔過世那晚，你在俱樂部,,claim short label; evidence E08 催款信; issue 動
+CLM_D01_08B_LINE,催款信的日期，是海德先生過世的那一天。那一晚，你在俱樂部。,,claim spoken line (Sherefox); evidence E08 催款信; issue 動
+CLM_D01_09A,艾琳是海德先生的女兒,,claim short label; evidence E09 胸針; issue 動
+CLM_D01_09A_LINE,艾琳抽屜裡的胸針，和海德太太的是一對，編的是海德先生的頭髮。艾琳是海德先生的女兒——那份附錄，是留給她的。,,claim spoken line (Sherefox); evidence E09 胸針; issue 動
+CLM_D01_09B,胸針只是紀念品,,claim short label; evidence E09 胸針; issue 動
+CLM_D01_09B_LINE,這枚胸針是海德太太送給艾琳的紀念品，跟遺囑沒有關係。,,claim spoken line (Sherefox); evidence E09 胸針; issue 動
+CLM_D01_10A,附錄讓你少了一半,,claim short label; evidence E10 吸墨紙; issue 動
+CLM_D01_10A_LINE,吸墨紙上印著附錄的反字：『將遺產之半數，贈予……』。舊遺囑把一切留給你，這份附錄，讓你少了一半。,,claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
+CLM_D01_10B,最早看到附錄的人,,claim short label; evidence E10 吸墨紙; issue 動
+CLM_D01_10B_LINE,附錄是海德先生最後幾天寫的。前天整理書房的人，最早看到它——那個人站在門口，不肯進去，卻一直待到整理完。,,claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
+CLM_D01_11A,燈滅前，你的椅子就空了,,claim short label; evidence E11 艾琳的證詞; issue 機
+CLM_D01_11A_LINE,艾琳說，燈滅之前，你的椅子就已經空了。,,claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
+CLM_D01_11B,你的手套指尖沾著灰,,claim short label; evidence E11 艾琳的證詞; issue 機
+CLM_D01_11B_LINE,艾琳說，燈亮的時候你站在走廊口，黑手套的指尖沾著灰。,,claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
+CLM_D01_12A,這家人很重視守靈,,claim short label; evidence E12 花圈; issue 機
+CLM_D01_12A_LINE,全屋照規矩辦喪事，連門環都綁了黑紗。這家人很重視守靈——所以熄燈三分鐘，是件大事。,,claim spoken line (Sherefox); evidence E12 花圈; issue 機
+CLM_D01_P1A,他還在這棟屋子裡,,claim short label; evidence C\_D01\_P1 通靈板; issue 機
+CLM_D01_P1A_LINE,（把通靈板擺上靈柩旁的小桌）守靈夜還沒有過，海德先生還在這棟屋子裡。塞德里克先生，你有什麼話，想對他說嗎？,,claim spoken line (Sherefox); evidence C\_D01\_P1 通靈板; issue 機
+CLM_D01_P1B,他知道是誰,,claim short label; evidence C\_D01\_P1 通靈板; issue 動
+CLM_D01_P1B_LINE,（指示板慢慢滑向『YES』）……看。他說，他知道是誰。,,claim spoken line (Sherefox); evidence C\_D01\_P1 通靈板; issue 動
+CARD_D01_L1,整晚守在靈柩旁,,opponent card short label (his chain)
+CARD_D01_L2,鎖匠修鎖時動了手腳,,opponent card short label (his chain)
+CARD_D01_L3,鎖匠想勒索嬸嬸,,opponent card short label (his chain)
+CARD_D01_L4,有人從後門跑了,,opponent card short label (his chain)
+CARD_D01_F1,鎖匠碰過筒子、有萬用鑰匙,,opponent card short label (his chain)
+CARD_D01_F2,三分鐘裡誰都可能離席,,opponent card short label (his chain)
+CARD_D01_U1,閥門本來就鬆,,opponent card short label (his chain)
+CARD_D01_U2,我是欠了一點錢,,opponent card short label (his chain)
+CARD_D01_P05,鑰匙齒上有黃銅屑,,opponent card short label (his chain)
+CARD_D01_P07,鎖匠昨晚回來過,,opponent card short label (his chain)
+CARD_D01_P06,鎖匠一個人修筒子,,opponent card short label (his chain)
+CARD_D01_K1,我是去看閥門的,,opponent card short label (his chain)
+REFUTE_D01_05B_FACT,工作單寫明以萬用鑰匙校試,,fact the player now knows after 05B is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+REFUTE_D01_01D_FACT,鎖匠身上有萬用鑰匙圈,,fact the player now knows after 01D is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+REFUTE_D01_06B_FACT,鎖匠昨晚回來過,,fact the player now knows after 06B is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+OBS_D01_W1,黃銅筒的蓋子關得好好的，鎖是鎖上的,,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L003
+OBS_D01_W2,布里格斯被逮捕時已被搜身，身上沒有任何紙張,,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L007
+OBS_D01_W3,熄燈時全屋的燈一起變暗、一起變亮,,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L010
