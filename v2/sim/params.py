@@ -31,13 +31,14 @@ SHISSHU_TAKEN = 0.25         # 玩家失守：下一回合受到的傷害 +25%
 HEAL = 5.0                   # 周旋回復
 
 # ---------------------------------------------------------------- 7.3–7.5
-LASTCARD_PER_CRACK = 15.0    # 最後一張牌：玩家受 15 × c
+LASTCARD_PER_CRACK = 18.0    # 最後一張牌：玩家受 18 × c
 LASTCARD_PICKED_EXTRA = 10.0 # 用玩家留下的證物時再 +20
 LASTCARD_HEAL_PER_CRACK = 0.12
 LASTCARD_HEAL_CAP = 0.45
 LASTCARD_ZERO_C_DMG = 20.0   # c = 0 但有牌可出
 PLAYER_COMEBACK_HP = 0.30    # 7.5 玩家最後一張牌成功後回復到 30%
 
+BEHAVIOUR_TENDENCY = 0.8     # 8.4 行為表「傾向」規則照做的機率
 UNFAV_DAMAGE = False         # V-01：不利的事實接上時是否造成論證（False ＝ ASSUMPTION-03）
 SHISSHU_UNTIL_READ = True    # 7.2 (0.4)：失守持續到下一次讀對；False ＝ 0.3 的一回合
 MAX_ROUNDS = 20              # 超過即判玩家論敗（旁觀者散場）
@@ -72,11 +73,11 @@ SLIP_CHANCE = 0.30           # 浮動段中每次立論改打不利事實的機�
 # ---------------------------------------------------------------- 5 / 7.3 stages
 STAGES = {
     #           player HP, ronpa threshold, opp base dmg, tell clarity (clear, vague, disguise)
-    "early": dict(player_hp=100, ronpa_len=3, opp_base=20.0, clarity=(0.60, 0.40, 0.00),
+    "early": dict(player_hp=100, ronpa_len=3, opp_base=21.0, clarity=(0.60, 0.40, 0.00),
                   hand=dict(lie=3, fav=2, unfav=1), false_share=0.15, refute_hidden=0.6),
-    "mid":   dict(player_hp=140, ronpa_len=4, opp_base=14.0, clarity=(0.45, 0.45, 0.10),
+    "mid":   dict(player_hp=140, ronpa_len=4, opp_base=15.0, clarity=(0.45, 0.45, 0.10),
                   hand=dict(lie=4, fav=2, unfav=2), false_share=0.20, refute_hidden=0.7),
-    "late":  dict(player_hp=150, ronpa_len=4, opp_base=22.0, clarity=(0.30, 0.45, 0.25),
+    "late":  dict(player_hp=150, ronpa_len=4, opp_base=27.0, clarity=(0.30, 0.45, 0.25),
                   hand=dict(lie=5, fav=3, unfav=2), false_share=0.25, refute_hidden=0.8),
 }
 PROPER_POOL = {"early": 5, "mid": 6, "late": 7}   # 玩家可用的正論說法數（3 個爭點平均分）

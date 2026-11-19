@@ -131,6 +131,9 @@ class Debate:
         self.weights = a["weights"]
         self.rage = a["rage"]
         self.weakness = o["weakness"]
+        self.rule_half_force = o.get("rule_half_force", False)   # 「必定」：第一次 ≤ 50% → 下回合強辯、明示
+        self.rule_no_triple = o.get("rule_no_triple", False)     # 「必定」：同一行動連續兩次 → 第三次換別的
+        self.tendency = o.get("tendency", P.BEHAVIOUR_TENDENCY)
         self.sore = o.get("sore", 0.0)
 
         self.player = Side(st["player_hp"], st["player_hp"])
@@ -219,6 +222,13 @@ class Debate:
         self.both_zero = False
         self.surrendered = False
         self.first_ronpa = 0
+        self.hit_last = False          # he hurt the player last round (rule ④)
+        self.lost_card_last = False    # his card was knocked down last round (rule ①)
+        self.half_fired = False
+        self.half_force_next = False
+        self.act_hist = []
+        self.no_intercept_left = 0
+        self.last_refuted = None
 
     # ------------------------------------------------------------ helpers
     def ev(self, name):
@@ -251,10 +261,7 @@ class Debate:
 
     def opp_dmg(self, act, issue):
         combo = min(self.opp.combo, P.COMBO_CAP)
-        d = self.opp_base * (1 + P.COMBO_STEP * (combo - 1))
-        prev = self.opp.chain[-2] if len(self.opp.chain) >= 2 else None
-        if prev is not None and prev.issue == issue:
-            d *= P.CONTINUATION
+        d = self.opp_base * (1 + P.COMBO_STEP * (combo - 1))   # 0.6: no continuation for him
         if act == FORCE:
             d *= P.FORCE_MULT
             if self.over[AV]:
@@ -270,7 +277,9 @@ class Debate:
     def parry_reraise(self):
         """周旋：把一張被打掉的謊言改口重提，沿用原牌的可破解清單（R-27）。"""
         if self.refuted:
-            self.hand.append(self.refuted.pop(0))
+            c = self.last_refuted if self.last_refuted in self.refuted else self.refuted[0]
+            self.refuted.remove(c)
+            self.hand.append(c)
 
     # ------------------------------------------------------------ opponent AI (6.2, 8.3)
     def opp_choose(self):
@@ -279,23 +288,40 @@ class Debate:
         unfav = [c for c in self.hand if c.kind == "unfav"]
         can_unfav = self.any_over() or not cards or self.floating()
         avail = cards + (unfav if can_unfav else [])
+        self.forced_clear = False
         if self.over[AV]:
             act = FORCE if (avail and r.random() < self.rage) else REBUT
         else:
+            act = None
+            # 8.4 default priority (V-03): 「必定」 > ② player's sophistry → 反駁 > ① his card knocked down → 周旋 > ④ hit the player → 立論
+            if self.half_force_next and avail:
+                act, self.forced_clear = FORCE, True
+                self.half_force_next = False
+            if act is None and self.last_player_soph and r.random() < self.tendency:
+                act = REBUT
+            if act is None and self.lost_card_last and r.random() < self.tendency:
+                act = PARRY
+            if act is None and self.hit_last and avail and r.random() < self.tendency:
+                act = ATTACK
             w = list(self.weights)
-            if self.last_player_soph:
-                w[2] *= 2.5
-            if self.opp_lost_node:
-                w[3] *= 2.0
             if not avail:
                 w[0] = w[1] = 0
-            act = r.choices([ATTACK, FORCE, REBUT, PARRY], weights=w)[0]
+            if self.rule_no_triple and len(self.act_hist) >= 2 and self.act_hist[-1] == self.act_hist[-2]:
+                banned = self.act_hist[-1]
+                if act == banned:
+                    act = None
+                w[[ATTACK, FORCE, REBUT, PARRY].index(banned)] = 0
+                if sum(w) == 0:
+                    w = [0, 0, 1, 0] if banned != REBUT else [0, 0, 0, 1]
+            if act is None:
+                act = r.choices([ATTACK, FORCE, REBUT, PARRY], weights=w)[0]
+        self.act_hist.append(act)
         card = None
         if act in (ATTACK, FORCE):
-            slip = unfav and (self.next_unfav or self.over[PV]
+            slip = unfav and (self.next_unfav                       # 0.6: 困獸 changes only the next 立論
                               or (self.floating() and r.random() < P.SLIP_CHANCE))
             if slip:
-                card = r.choice(unfav)
+                card = unfav[0]                                    # 0.6: slips follow the hand order
                 self.next_unfav = False
             elif cards:
                 if self.over[GV]:      # 8.3: guilt over → no framing cards
@@ -310,7 +336,7 @@ class Debate:
     def tell(self, act):
         r = self.rng
         true_cls = CLASS[act]
-        if self.force_clear or self.over[PV] or self.over[AV]:
+        if self.force_clear or self.forced_clear or self.over[PV] or self.over[AV]:
             clarity = 0
         else:
             clarity = r.choices([0, 1, 2], weights=self.clarity)[0]
@@ -405,11 +431,13 @@ class Debate:
         extra = P.LASTCARD_PICKED_EXTRA if uses_picked else 0.0
         if c == 0:
             pl.hp -= P.LASTCARD_ZERO_C_DMG + extra
-            op.hp = op.max_hp * P.LASTCARD_ZERO_C_HEAL
+            heal = P.LASTCARD_ZERO_C_HEAL
         else:
             pl.hp -= P.LASTCARD_PER_CRACK * c + extra
-            op.hp = op.max_hp * min(P.LASTCARD_HEAL_CAP, P.LASTCARD_HEAL_PER_CRACK * c)
-        self.cracks = 0                  # ASSUMPTION-10: spent by the last card
+            heal = min(P.LASTCARD_HEAL_CAP, P.LASTCARD_HEAL_PER_CRACK * c)
+        if not self.over[PV]:            # 0.6: 困獸 voids the heal
+            op.hp = op.max_hp * heal
+        # 0.6: c is the running count on the public record; it does not reset
         self.broken = 0
         self.hachiku = 0
         if pl.hp <= 0:
@@ -432,9 +460,9 @@ class Debate:
         self.endgame = trigger
         # 罪惡感 / clean cases resolve at once; a real last card takes next round's tell
         c = self.cracks
-        if self.over[GV] or (c == 0 and not self.picked_reserved):
+        if self.over[GV] or (c == 0 and not self.picked_reserved and not self.scripted_last):
             return self.opp_endgame()
-        return None
+        return None                      # last card or 垂死反撲: its own endgame round (0.6)
 
     # ------------------------------------------------------------ one round
     def round(self):
@@ -486,6 +514,7 @@ class Debate:
         hurt = False                      # he hurt the player this round (R-09)
         guard_trigger = False
         key_hit = False
+        lost_card = False
         p_events, o_events = [], []       # R-10: one event per action
 
         def opp_attach(damage=True):
@@ -591,7 +620,7 @@ class Debate:
                     self.parry_reraise()
         elif kind == "intercept":
             soph = ch["soph"]
-            if act in (ATTACK, FORCE) and card is not None and not self.no_intercept:
+            if act in (ATTACK, FORCE) and card is not None and not self.no_intercept_left:
                 ok = soph or (card.is_lie and card.covered)
                 if ok:
                     base = P.SOPH_INTERCEPT_DMG if soph else P.INTERCEPT_DMG
@@ -607,8 +636,10 @@ class Debate:
                     if soph:
                         self.cracks += 1
                         self.soph_said += 1
+                    lost_card = True
                     if card.is_lie:
                         self.refuted.append(card)
+                        self.last_refuted = card
                         p_events.append("lie_down_soph" if soph else "lie_down_proper")
                     else:
                         self.denials += 1
@@ -633,14 +664,12 @@ class Debate:
                     o_events.append("own_rebut_whiff")
                 elif act == PARRY:
                     pl.hp -= P.WHIFF
-                    self.no_intercept = True
+                    self.no_intercept_left = 2             # 0.6: only his next round
                     self.heal_opp()
                     self.parry_reraise()
                 else:
                     pl.hp -= P.WHIFF
                     opp_attach()
-            if act in (ATTACK, FORCE):
-                self.no_intercept = False
         elif kind == "dismantle":
             soph, target = ch["soph"], ch["node"]
             if target in op.chain:
@@ -655,8 +684,10 @@ class Debate:
                     if soph:
                         self.cracks += 1
                         self.soph_said += 1
+                    lost_card = True
                     if tc.is_lie:
                         self.refuted.append(tc)
+                        self.last_refuted = tc
                         p_events.append("lie_down_soph" if soph else "lie_down_proper")
                     else:
                         self.denials += 1
@@ -692,11 +723,13 @@ class Debate:
             else:
                 pl.hp -= P.STALEMATE
                 op.hp -= P.STALEMATE
+                self.heal_opp()                                 # 0.6: 周旋 still heals and re-raises
+                self.parry_reraise()
                 p_events.append("stalled")
             if repeat:
                 pl.hp -= P.STALL_REPEAT_EXTRA
-        if act == REBUT and kind in ("intercept", "dismantle", "stall"):
-            self.broken = max(self.broken, 2)                   # 7.2: his rebut missed → 破防
+        if act == REBUT and (kind in ("intercept", "dismantle") or (kind == "stall" and self.stall_streak < 2)):
+            self.broken = max(self.broken, 2)                   # 7.2; 0.6: a repeated stall does not set 破防
 
         # 援護 (5.3)
         if guard and guard_trigger:
@@ -734,7 +767,7 @@ class Debate:
             if len(pl.chain) >= self.ronpa_len and len(self.chain_issues()) >= 2:
                 ronpa = True
         rev = False
-        if self.shisshu and o_attached and card is not None and card.kind != "unfav":
+        if self.shisshu and o_attached and card is not None:          # 0.6: an unfav node counts too
             if len(op.chain) >= self.ronpa_len and len({n.issue for n in op.chain}) >= 2:
                 rev = True
         if ronpa and rev:
@@ -744,10 +777,18 @@ class Debate:
                 ronpa = False
         if self.broken > 0:
             self.broken -= 1
-        if read_ok and self.shisshu and P.SHISSHU_UNTIL_READ:
+        if read_ok and not hurt and self.shisshu and P.SHISSHU_UNTIL_READ:
             self.shisshu = False                # ASSUMPTION-37: correct read = the 破竹 list
         elif not P.SHISSHU_UNTIL_READ:
             self.shisshu = False
+
+        self.hit_last = hurt
+        self.lost_card_last = lost_card
+        if self.no_intercept_left:
+            self.no_intercept_left -= 1
+        if self.rule_half_force and not self.half_fired and op.hp > 1 and op.hp <= 0.5 * op.max_hp:
+            self.half_fired = True              # V-04: the 論破 lock at 1 does not count
+            self.half_force_next = True
 
         if rev:
             pl.hp = 1

@@ -104,8 +104,13 @@ def base_overrides(d, notes):
     if isinstance(w, dict):
         g = lambda *ks: next((w[k] for k in ks if k in w), 0)
         o["weights"] = (g("attack", "立論"), g("force", "強辯"), g("rebut", "反駁"), g("parry", "周旋"))
-    if beh.get("rules") or beh.get("play_order"):
-        notes.append("behavior.rules / play_order are read by people only; the sim uses its own two reaction rules (7 in README)")
+    rules = " ".join(beh.get("rules") or [])
+    if "50%" in rules:
+        o["rule_half_force"] = True
+    if "twice" in rules or "連續兩次" in rules:
+        o["rule_no_triple"] = True
+    if beh.get("play_order"):
+        notes.append("behavior.play_order is not simulated (cards are drawn at random, lies weighted 2:1)")
     tc = beh.get("tell_clarity")
     if isinstance(tc, dict):
         g = lambda *ks: next((tc[k] for k in ks if k in tc), 0)
