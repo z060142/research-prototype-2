@@ -9,7 +9,7 @@ All files are UTF-8 (CSV files have a BOM).
 | Push | Content | State |
 | --- | --- | --- |
 | 1 | Everything the debate needs: claims, opponent cards, cut/refute/contradiction/link lines, reactions, tells, state lines, system templates, situational beats, warm-up (S04) and debate framing (S07) | done |
-| 2 | Investigation: evidence, hotspots, person notes, observations, appraisals, carry screen (S05/S06) | pending |
+| 2 | Investigation: evidence, hotspots, person notes, observations, appraisals, carry screen (S05/S06) | done |
 | 3 | Story scenes: S01–S03, S08–S11 | pending |
 | 4 | English column for every row | pending |
 
@@ -17,9 +17,9 @@ All files are UTF-8 (CSV files have a BOM).
 
 | File | Rows | Content |
 | --- | ---: | :--- |
-| script_d01.csv | 241 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
-| evidence_d01.csv | 84 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
-| strings_d01.json | 325 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
+| script_d01.csv | 281 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
+| evidence_d01.csv | 181 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
+| strings_d01.json | 462 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
 | ui_strings_d01.csv | — | written by Sherefox遊戲企劃, not part of this build; not merged into strings_d01.json |
 
 ## ID scheme
@@ -45,7 +45,12 @@ All files are UTF-8 (CSV files have a BOM).
 | `BEAT_D01_*` | situational beats (condition in the note) | script |
 | `FOG_D01_n` | Sherefox's 打迷糊仗 lines | script |
 | `OBS_D01_W1–W3` | warm-up observation cards | evidence |
-| `SCR_D01_S<scene>_L<line>` | scene script lines (S04 and S07 in push 1) | script |
+| `E_D01_<nn>_NAME / _DESC`, `C_D01_P1_NAME / _DESC` | evidence and psych card name / description | evidence |
+| `HS_D01_<nn>_NAME / _DESC` / `HS_D01_<nn>_ART` | hotspot name / description / Arthur's comment | evidence / script |
+| `SCENE_D01_<PLACE>` | investigation locations (PARLOR, STUDY, BASEMENT, ATTIC, BEDROOM, HALL) | evidence |
+| `PN_D01_<n>_NAME / _TEXT`, `OBS_D01_01_NAME / _TEXT` | person notes and observation: title / text | evidence |
+| `APR_D01_<nn>_LINE` / `_RESULT` | Arthur's appraisal line / the result note added to the evidence | script / evidence |
+| `SCR_D01_S<scene>_L<line>` | scene script lines (S04, S06, S07 so far) | script |
 
 ## Templates and placeholders
 

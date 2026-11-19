@@ -240,3 +240,43 @@ SCR_D01_S07_L016,系統,System,論戰敗北。,,cond: 敗北
 SCR_D01_S07_L017,巴斯克維爾,Inspector Baskerville,好了！鎖匠移送！狐狸小姐，下次查案，記得把東西帶齊！,,cond: 敗北
 SCR_D01_S07_L018,塞德里克,Cedric,嬸嬸，我會請律師處理遺產的事。……書房我來整理就好。,,cond: 敗北
 SCR_D01_S07_L019,旁白（亞瑟筆記）,Narration (Arthur's Notes),那天晚上，海德宅的書房壁爐，冒了一次煙。,,cond: 敗北
+APR_D01_01_LINE,亞瑟,Arthur,鎖芯完好，一道撬痕也沒有。彈簧是新換的，裝得很漂亮。還有一件事——鎖芯裡乾乾淨淨，一滴油都沒有。萬用鑰匙要上油才轉得動，用萬用鑰匙開過，裡面一定會留下油。打開它的，是一把乾淨的原配鑰匙。,,appraisal line for E01 黃銅文件筒
+APR_D01_02_LINE,亞瑟,Arthur,鐘擺沒綁緞帶，是被震了一下才重新擺起來的。從九點四十分走到現在的十點四十八分，走了一小時八分鐘。往回推——它是在昨晚十一點零二分左右開始走的。正好是燈滅的時候。,,appraisal line for E02 書房的座鐘
+APR_D01_04_LINE,亞瑟,Arthur,閥輪上的不是地下室的煤塵，是壁爐的細煙灰。這屋子裡只有書房的壁爐很久沒生火、積著這種舊灰。轉開總閥的那隻手，剛從書房的壁爐出來。,,appraisal line for E04 煤氣總閥
+HS_D01_01_ART,亞瑟,Arthur,守靈的人整夜坐在這裡。靠走廊的位子……離傭人樓梯最近。,,Arthur's comment at this hotspot
+HS_D01_02_ART,亞瑟,Arthur,她嚇壞了，可是說得很清楚。,,Arthur's comment at this hotspot
+HS_D01_03_ART,亞瑟,Arthur,倒是挺時髦的錶鏈。,,Arthur's comment at this hotspot
+HS_D01_04_ART,亞瑟,Arthur,遺體照現在很流行。他大概是不喜歡拍照。,,Arthur's comment at this hotspot
+HS_D01_05_ART,亞瑟,Arthur,髮辮首飾……也是喪事的習俗。,,Arthur's comment at this hotspot
+HS_D01_06_ART,亞瑟,Arthur,照規矩辦得很完整。這個……跟案子沒關係吧？,,Arthur's comment at this hotspot
+HS_D01_07_ART,亞瑟,Arthur,海德先生走的時刻。全屋的鐘都停在這裡。,,Arthur's comment at this hotspot
+HS_D01_08_ART,亞瑟,Arthur,可以讓我拆開鎖看看。這種鎖，是不是被人動過，一看便知。（可鑑定）,,Arthur's comment at this hotspot
+HS_D01_09_ART,亞瑟,Arthur,它的鐘擺沒有綁緞帶。可以讓我看看它是什麼時候開始走的。（可鑑定）,,Arthur's comment at this hotspot
+HS_D01_10_ART,亞瑟,Arthur,大概是風吹的，窗戶留了一道縫。蠟……守靈用的那種白蠟燭？,,Arthur's comment at this hotspot
+HS_D01_11_ART,亞瑟,Arthur,這是附錄的內容。一半遺產，給了別人。,,Arthur's comment at this hotspot
+HS_D01_12_ART,亞瑟,Arthur,裡面好像塞了什麼東西。……卡得很緊，得找人來拆。（論戰勝利後在這裡找到附錄）,,Arthur's comment at this hotspot
+HS_D01_13_ART,亞瑟,Arthur,嗯，黑布確實不太好看。,,Arthur's comment at this hotspot
+HS_D01_14_ART,亞瑟,Arthur,海德先生的備用鑰匙？不見了。,,Arthur's comment at this hotspot
+HS_D01_15_ART,亞瑟,Arthur,地下室到處是煤塵，這點灰不奇怪。不過我可以拿去比對看看。（可鑑定）,,Arthur's comment at this hotspot
+HS_D01_16_ART,亞瑟,Arthur,從靈堂走到這裡，不用一分鐘。,,Arthur's comment at this hotspot
+HS_D01_17_ART,亞瑟,Arthur,機油……廚房裡有誰會用機油？,,Arthur's comment at this hotspot
+HS_D01_18_ART,亞瑟,Arthur,她好像很緊張。,,Arthur's comment at this hotspot
+HS_D01_19_ART,亞瑟,Arthur,沙龍遊戲。我們小時候也玩過，指示板是手自己推的。這跟案子沒關係吧？妳什麼時候開始收集工藝品了？,,Arthur's comment at this hotspot
+HS_D01_20_ART,亞瑟,Arthur,這是……哀悼首飾。女僕怎麼會有？,,Arthur's comment at this hotspot
+HS_D01_21_ART,亞瑟,Arthur,驅邪的。這屋子真是什麼規矩都有。,,Arthur's comment at this hotspot
+HS_D01_22_ART,亞瑟,Arthur,浪費燈油。有錢人家的習慣吧。,,Arthur's comment at this hotspot
+HS_D01_23_ART,亞瑟,Arthur,四百鎊！這可不是小數目。,,Arthur's comment at this hotspot
+HS_D01_24_ART,亞瑟,Arthur,前一任房客留下的吧。,,Arthur's comment at this hotspot
+HS_D01_25_ART,亞瑟,Arthur,鑰匙全上了油。鎖匠的習慣。,,Arthur's comment at this hotspot
+HS_D01_26_ART,亞瑟,Arthur,他在保護誰？,,Arthur's comment at this hotspot
+SCR_D01_S06_L001,系統,System,能帶進論戰的東西有限。留下的證物，可能落入對手手中。,,cond: 首次出現此畫面
+SCR_D01_S06_L002,系統,System,可攜帶：9 件。已選：（n）件。,,
+SCR_D01_S06_L003,亞瑟,Arthur,這個真的沒用。,,cond: 選到 E12 黑紗花圈
+SCR_D01_S06_L004,亞瑟,Arthur,Sherefox，我們是去論戰，不是去開沙龍。它真的要佔一個位子嗎？,,cond: 選到 C_D01_P1 通靈板
+SCR_D01_S06_L005,Sherefox,Sherefox,它很輕。而且，木頭會說話——如果有人肯聽的話。,,cond: 選到 C_D01_P1 通靈板
+SCR_D01_S06_L006,亞瑟,Arthur,這是艾琳的私人物品。妳確定要帶上台？,,cond: 選到 E09 髮辮胸針
+SCR_D01_S06_L007,亞瑟,Arthur,一塊布……好吧，妳說了算。,,cond: 選到 E03 鏡子黑布
+SCR_D01_S06_L008,亞瑟,Arthur,鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。,,cond: 待使用者決定; cond: 未選 E05 萬用鑰匙圈
+SCR_D01_S06_L009,系統,System,以下東西會留在宅邸：（留下清單）。確定嗎？,,cond: 按下「確定」時
+SCR_D01_S06_L011,亞瑟,Arthur,還有空位喔。少帶一樣，就少一張牌。（規則 0.4：4.5 只保證帶滿的帶法）,,cond: 按下「確定」時，已選少於 9 件
+SCR_D01_S06_L010,亞瑟,Arthur,警督說，我們沒帶走的東西，交給屋主保管。……屋主現在是塞德里克先生。,,cond: 確定後，有證物留下時
