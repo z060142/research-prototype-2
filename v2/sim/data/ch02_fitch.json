@@ -54,6 +54,8 @@
   ],
   "opponent": {
     "name": "費奇",
+    "hp": 130,
+    "personality": {"archetype": "心虛的初犯"},
     "cards": [
       {"id": "L1", "kind": "lie", "issue": "時", "breakable_by": ["02A", "02B", "04A"]},
       {"id": "L2", "kind": "lie", "issue": "法", "breakable_by": ["01C", "04A", "07A"]},

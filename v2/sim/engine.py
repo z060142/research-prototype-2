@@ -65,6 +65,7 @@ class Stmt:
     standing: bool = False
     voided: bool = False
     said: bool = False
+    psych: tuple | None = None   # data mode: the claim's own 心理作用 (P, G, A)
 
 
 @dataclass
@@ -101,10 +102,13 @@ class Debate:
     def __init__(self, opp_key: str, policy, rng: random.Random, overrides: dict | None = None):
         self.rng = rng
         self.policy = policy
-        o = dict(P.OPPONENTS[opp_key])
+        o = dict(P.OPPONENTS[opp_key]) if opp_key else {}
         if overrides:
             o.update(overrides)
-        a = P.ARCHETYPES[o["arch"]]
+        a = dict(P.ARCHETYPES[o["arch"]])
+        for k in ("start", "thr", "decay", "scale", "weights", "rage", "override"):
+            if k in o:
+                a[k] = o[k]
         st = P.STAGES[o["stage"]]
         self.opp_key = opp_key
         self.stage = o["stage"]
@@ -117,21 +121,33 @@ class Debate:
             c, v, d = clar
             clar = (c + d / 2, v + d / 2, 0.0)
         self.clarity = clar
-        self.thr = o.get("thr", a["thr"])
-        self.scale = o.get("scale", a["scale"])
+        self.thr = a["thr"]
+        self.scale = a["scale"]
         self.override = a["override"]
         self.decay = a["decay"]
-        self.weights = o.get("weights", a["weights"])
+        self.weights = a["weights"]
         self.rage = a["rage"]
         self.weakness = o["weakness"]
         self.sore = o.get("sore", 0.0)
 
         self.player = Side(st["player_hp"], st["player_hp"])
         self.opp = Side(o["hp"], o["hp"])
-        self.psy = list(o.get("start", a["start"]))
+        self.psy = list(a["start"])
+        self.counter_p = o.get("counter_p")       # data mode: chance the player cuts the last card
         self.over = [False, False, False]
         self.crossed = [False, False, False]
 
+        if "hand_cards" in o:                     # data mode (sim_data.py)
+            self.hand = [Card(*c) for c in o["hand_cards"]]
+            self.picked_reserved = o.get("picked_last", False)
+            self.scripted_last = o["last_card"]
+            self.refuted = []
+            self.stmts = [Stmt(i, f, k, psych=ps) for (i, f, k, ps) in o["stmts"]]
+        else:
+            self._random_setup(o, st, rng)
+        self._init_state()
+
+    def _random_setup(self, o, st, rng):
         # opponent hand (5.2)
         hand = o.get("hand", st["hand"])
         cov = self.skill["coverage"][self.stage]
@@ -164,6 +180,7 @@ class Debate:
         for s in self.stmts:
             s.oppknows = s.false and rng.random() < st["refute_hidden"]
 
+    def _init_state(self):
         # state
         self.rnd = 0
         self.broken = 0
@@ -357,7 +374,7 @@ class Debate:
         if c == 0 and not self.picked_reserved:
             if self.scripted_last:                      # 垂死反撲 (R-14)
                 self.dying = True
-                has = r.random() < self.skill["counter"]
+                has = r.random() < (self.counter_p[0] if self.counter_p is not None else self.skill["counter"])
                 if not self.policy.counter_last(self, has):
                     pl.hp -= P.DYING_DMG
                     if pl.hp <= 0:
@@ -365,7 +382,10 @@ class Debate:
             return self.finish(True, kind_win)
         # he plays his last card: picked-up evidence first, then the scripted one (R-03)
         uses_picked = self.picked_reserved
-        has = r.random() < self.skill["counter"] * (P.PICKED_COUNTER if uses_picked else 1.0)
+        if self.counter_p is not None:
+            has = r.random() < self.counter_p[1 if uses_picked else 0]
+        else:
+            has = r.random() < self.skill["counter"] * (P.PICKED_COUNTER if uses_picked else 1.0)
         attempt = self.policy.counter_last(self, has)
         if attempt and has:
             if trigger == "ronpa":
@@ -548,6 +568,9 @@ class Debate:
                     self.psych_card_used = True
                     for i in range(3):
                         self.psy[i] = min(100.0, self.psy[i] + self.weakness[i])
+                elif stmt is not None and stmt.psych:
+                    for i in range(3):                         # scripted 心理作用 of this claim
+                        self.psy[i] = max(0.0, min(100.0, self.psy[i] + stmt.psych[i]))
                 elif not soph and kind != "catch" and r.random() < self.sore:
                     p_events.append("sore_spot")
                 if act in (ATTACK, FORCE):

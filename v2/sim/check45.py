@@ -25,6 +25,10 @@ Sophistry-free route (PASS) = there is a set of safe claims, pairwise not
 reached without sophistry by baiting a rebuttal with 打迷糊仗 (6.3), and 接話
 claims are a bonus, so neither is required.
 
+WEAK = PASS, but no safe claim breaks any of his lies: 破防 then depends only
+on baiting his rebuttals, and sim_data.py shows a careful player losing most
+of those debates. Treat WEAK as a warning for the level design.
+
 Also reported (how pretty the route can be; not part of PASS/FAIL):
   clean     grade 1 possible: PASS and nothing picked up
   cut_key   a safe claim breaks the keystone lie (抓漏洞)
@@ -173,6 +177,7 @@ def check(path, all_sizes=False):
                         counter=any(any(l in brk[i] for i in proper) for l in last) if last else None,
                         pick_lie=pick_lie,
                         truth_max=100 - 10 * len(keyev - cset),
+                        safe_ids=safe, proper_ids=proper, held=held_cards,
                     ))
     return d, need, rows, errs
 
@@ -186,21 +191,24 @@ def main():
     a = ap.parse_args()
     d, need, rows, errs = check(a.path, a.all_sizes)
     fails = [r for r in rows if not r["ok"]]
+    weak = [r for r in rows if r["ok"] and r["cuts"] == 0]
     out = [f"# 4.5 檢查：{d.get('id', a.path)}", "",
            f"* 論破門檻 {need}；攜帶上限 {d.get('carry_limit')}；鑑定上限 {d.get('appraisal_limit')}；對手最多撿 {d.get('max_pickup', 2)} 件",
-           f"* 帶法 × 鑑定組合：{len(rows)}；**沒有不靠詭辯的獲勝路線：{len(fails)}**",
+           f"* 帶法 × 鑑定組合：{len(rows)}；**沒有不靠詭辯的獲勝路線：{len(fails)}**；"
+           f"有路線但沒有任何正論能截斷他的謊言（WEAK）：{len(weak)}",
            f"* 可能乾淨論破（等級一）：{sum(r['clean'] for r in rows)}；能截斷要害：{sum(r['cut_key'] for r in rows)}；"
            f"能截斷最後一張牌：{sum(1 for r in rows if r['counter'])}；黃金線索可能（真相度上限 ≥ 70）：{sum(r['truth_max'] >= 70 for r in rows)}", ""]
     if errs:
         out += ["## 資料警告", ""] + [f"* {e}" for e in errs] + [""]
-    show = rows if a.verbose else fails
-    title = "全部組合" if a.verbose else "失敗的組合"
+    show = rows if a.verbose else fails + weak
+    title = "全部組合" if a.verbose else "失敗與 WEAK 的組合"
     out += [f"## {title}", ""]
     if show:
         out += ["| 結果 | 帶走 | 鑑定 | 對手撿到 | 安全正論數 | 範例路線 | 乾淨 | 截要害 | 截最後一張牌 | 只能詭辯打的撿來謊言 | 真相度上限 |",
                 "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
         for r in show:
-            out.append(f"| {'PASS' if r['ok'] else 'FAIL'} | {' '.join(r['carry'])} | {' '.join(r['appraise']) or '—'} | "
+            tag = "FAIL" if not r["ok"] else ("WEAK" if r["cuts"] == 0 else "PASS")
+            out.append(f"| {tag} | {' '.join(r['carry'])} | {' '.join(r['appraise']) or '—'} | "
                        f"{' '.join(r['picked']) or '—'} | {r['safe']} | {' '.join(r['route']) or '—'} | "
                        f"{'是' if r['clean'] else ''} | {'是' if r['cut_key'] else ''} | {'是' if r['counter'] else ''} | "
                        f"{' '.join(r['pick_lie']) or ''} | {r['truth_max']}% |")

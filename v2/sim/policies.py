@@ -210,7 +210,7 @@ class Psych(Careful):
     name = "psych"
 
     def choose(self, d, seen, card):
-        if not d.psych_card_used and seen != "rebut" and d.rnd <= 3:
+        if d.weakness is not None and not d.psych_card_used and seen != "rebut" and d.rnd <= 3:
             have = d.chain_issues()
             issue = next((i for i in range(3) if i not in have), 0)
             return {"kind": "psych", "issue": issue}

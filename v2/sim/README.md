@@ -28,6 +28,7 @@ uv run python run.py --n 4000 --md results.md --json results.json
 | `run.py` | 批次執行並輸出 Markdown／JSON 結果 |
 | `results.md`／`results.json` | 最近一次 4000 場的結果（`01_numbers.md` 第 5 節引用） |
 | `check45.py` | 4.5 防卡關檢查（見下） |
+| `sim_data.py` | 用一場真實論戰的資料跑五種策略（見下） |
 | `data/` | 論戰資料（`sherefox-debate/1` 格式） |
 
 ## 開關
@@ -56,6 +57,22 @@ uv run python check45.py data/ch02_fitch.json --verbose --md out.md   # 列出�
 * 對手撿證物：被留下且有 `opponent_use` 的證物，依 `pickup_priority` 撿，最多 `max_pickup` 件。
 * **通過**＝存在一組兩兩不互斥的安全正論，數量 ≥ 論破門檻，涵蓋 ≥ 2 個爭點。破防一定能不靠詭辯達成（打迷糊仗騙反駁落空），接話只算加分，所以不列入條件。
 * 另外回報漂亮程度：能否乾淨論破、能否截斷要害、能否截斷最後一張牌、只能用詭辯打掉的撿來謊言、真相度上限。
+
+* **WEAK**（警告，不算失敗）：有路線，但這套帶法沒有任何安全正論能截斷他的謊言。破防只能靠打迷糊仗騙反駁落空，實際上很難打贏（見 `sim_data.py` 的帶法勝率表）。
+
+## 真實論戰的策略模擬
+
+```bash
+uv run python sim_data.py data/ch02_fitch.json --n 4000 --per 60 --md out.md
+```
+
+把一份論戰資料的每一種帶滿的帶法，換成實際的手牌與說法，交給 `engine.py` 跑五種策略：
+
+* 對手手牌＝資料裡的謊言、有利／不利的事實，加上這套帶法下他撿到的證物（`last_card_priority` 把撿來的放第一時，留一件當最後一張牌）。
+* 「能截斷」＝這套帶法裡有安全正論能破解那張牌；說法清單＝這套帶法裡所有正論，含真偽、能否被駁倒（`opp_refute`）、說法自己的心理作用。
+* 謹慎／詭辯／心理牌從最好的 1/4 帶法裡抽（心理牌限有帶心理牌的帶法），粗心／拖延從全部帶法裡抽。
+* 另外對每一種帶法跑謹慎玩家 `--per` 場，列出勝率最低的 5 種：用來找「規則上有路，實際上很難贏」的帶法。
+* 資料沒給的數值（可信度、論證、性格）依 `stage` 與 `opponent.personality.archetype`（原型名稱，中文或 `params.py` 的代號皆可）取 `params.py` 的值。
 
 ## 論戰資料格式（`sherefox-debate/1`）
 
@@ -122,4 +139,4 @@ uv run python check45.py data/ch02_fitch.json --verbose --md out.md   # 列出�
 | `personality` | 否 | 8.4 性格表：`{start:{P,G,A}, threshold:{P,G,A}, decay:{P,G,A}, event_mult:{<事件>:{P,G,A}}, weakness:[...], rage_force_share}` |
 | `behavior` | 否 | 行為表：`{weights:{attack,force,rebut,parry}, rules:[...], play_order:[...], tell_clarity:{clear,vague,disguise}}` |
 
-`personality`、`behavior`、`hp`、`base_damage` 目前只供人讀與日後模擬使用，4.5 檢查不讀。未列出的欄位一律忽略，可以自由加註解欄位（例 `note`）。
+`personality`、`behavior`、`hp`、`base_damage`：`check45.py` 不讀；`sim_data.py` 會讀。`sim_data.py` 認得的欄位：`personality.archetype`、`start`、`threshold`、`decay`（`{P,G,A}`）、`event_mult`（事件名用 8.2 的中文名稱）、`rage_force_share`；`behavior.weights`（`attack`／`force`／`rebut`／`parry`）、`behavior.tell_clarity`（`clear`／`vague`／`disguise`）；頂層 `max_rounds`。其他欄位照樣保留給人讀。未列出的欄位一律忽略，可以自由加註解欄位（例 `note`）。
