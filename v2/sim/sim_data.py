@@ -104,6 +104,8 @@ def base_overrides(d, notes):
     if isinstance(w, dict):
         g = lambda *ks: next((w[k] for k in ks if k in w), 0)
         o["weights"] = (g("attack", "立論"), g("force", "強辯"), g("rebut", "反駁"), g("parry", "周旋"))
+    if "tendency" in beh:
+        o["tendency"] = float(beh["tendency"])        # 傾向規則照做的機率（0～1）
     rules = " ".join(beh.get("rules") or [])
     if "50%" in rules:
         o["rule_half_force"] = True
