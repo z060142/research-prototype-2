@@ -49,6 +49,8 @@ def summarize(results):
         "dying": pct(lambda r: r.dying),
         "surrender": pct(lambda r: r.surrendered),
         "psych_used": pct(lambda r: r.psych_card),
+        "first_ronpa": (sum(r.first_ronpa for r in results if r.first_ronpa) /
+                        max(1, sum(1 for r in results if r.first_ronpa))),
         "timeout": pct(lambda r: r.kind == "timeout"),
         "cross_p": pct(lambda r: r.crossed[0]),
         "cross_g": pct(lambda r: r.crossed[1]),

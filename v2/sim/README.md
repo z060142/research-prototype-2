@@ -29,6 +29,8 @@ uv run python run.py --n 4000 --md results.md --json results.json
 | `results.md`／`results.json` | 最近一次 4000 場的結果（`01_numbers.md` 第 5 節引用） |
 | `check45.py` | 4.5 防卡關檢查（見下） |
 | `sim_data.py` | 用一場真實論戰的資料跑五種策略（見下） |
+| `carry_sweep.py` | 一場論戰在不同攜帶上限下的 4.5 檢查與勝率（見下） |
+| `results_demo.md`／`results_demo_carry.md` | 示範章（`v2/demo/debate_data.json`）的策略模擬與攜帶上限掃描 |
 | `data/` | 論戰資料（`sherefox-debate/1` 格式） |
 
 ## 開關
@@ -73,6 +75,14 @@ uv run python sim_data.py data/ch02_fitch.json --n 4000 --per 60 --md out.md
 * 謹慎／詭辯／心理牌從最好的 1/4 帶法裡抽（心理牌限有帶心理牌的帶法），粗心／拖延從全部帶法裡抽。
 * 另外對每一種帶法跑謹慎玩家 `--per` 場，列出勝率最低的 5 種：用來找「規則上有路，實際上很難贏」的帶法。
 * 資料沒給的數值（可信度、論證、性格）依 `stage` 與 `opponent.personality.archetype`（原型名稱，中文或 `params.py` 的代號皆可）取 `params.py` 的值。
+
+## 攜帶上限掃描
+
+```bash
+uv run python carry_sweep.py ../demo/debate_data.json --limits 11 10 9 8 7 --appraisals 2 1 --md out.md
+```
+
+對每個「攜帶上限 × 鑑定上限」：4.5 檢查（失敗、WEAK）、謹慎／粗心／心理牌在各帶法的平均勝率、謹慎玩家最差帶法的勝率、對手撿到 2 件的比例，以及失敗帶法共同沒帶的證物（通常就是原因）。`sim_data.py` 也可用 `--carry`、`--appraisals`、`--hp`、`--dmg` 覆寫資料裡的數值做試算。
 
 ## 論戰資料格式（`sherefox-debate/1`）
 
@@ -139,4 +149,4 @@ uv run python sim_data.py data/ch02_fitch.json --n 4000 --per 60 --md out.md
 | `personality` | 否 | 8.4 性格表：`{start:{P,G,A}, threshold:{P,G,A}, decay:{P,G,A}, event_mult:{<事件>:{P,G,A}}, weakness:[...], rage_force_share}` |
 | `behavior` | 否 | 行為表：`{weights:{attack,force,rebut,parry}, rules:[...], play_order:[...], tell_clarity:{clear,vague,disguise}}` |
 
-`personality`、`behavior`、`hp`、`base_damage`：`check45.py` 不讀；`sim_data.py` 會讀。`sim_data.py` 認得的欄位：`personality.archetype`、`start`、`threshold`、`decay`（`{P,G,A}`）、`event_mult`（事件名用 8.2 的中文名稱）、`rage_force_share`；`behavior.weights`（`attack`／`force`／`rebut`／`parry`）、`behavior.tell_clarity`（`clear`／`vague`／`disguise`）；頂層 `max_rounds`。其他欄位照樣保留給人讀。未列出的欄位一律忽略，可以自由加註解欄位（例 `note`）。
+`personality`、`behavior`、`hp`、`base_damage`：`check45.py` 不讀；`sim_data.py` 會讀。`sim_data.py` 認得的欄位：`personality.archetype`（可加「（改）」）、`start`、`threshold`、`decay`（每回合回落量 `{P,G,A}`）、`mult`（數值倍率）、`event_mult`（倍率）、`exceptions`（該事件的實際增量，例 `options_low`、`fooled`）、`rage_force_share`／`rage_strong_ratio`；`behavior.weights`（`attack`／`force`／`rebut`／`parry` 或 `立論`／`強辯`／`反駁`／`周旋`）、`behavior.tell_clarity`（`clear`／`vague`／`disguise` 或 `explicit`／`vague`／`disguised`）。說法自己的 `psych` 每場只生效一次（8.1）；頂層 `max_rounds`。其他欄位照樣保留給人讀。未列出的欄位一律忽略，可以自由加註解欄位（例 `note`）。

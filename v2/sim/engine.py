@@ -66,6 +66,7 @@ class Stmt:
     voided: bool = False
     said: bool = False
     psych: tuple | None = None   # data mode: the claim's own 心理作用 (P, G, A)
+    psych_done: bool = False
 
 
 @dataclass
@@ -97,6 +98,7 @@ class Result:
     guard_saved: bool
     dying: bool      # 垂死反撲 beat happened
     surrendered: bool  # gave up in the endgame because guilt was over threshold (or confessed)
+    first_ronpa: int   # round of the first 論破 (0 = none)
 
 
 class Debate:
@@ -216,6 +218,7 @@ class Debate:
         self.dying = False
         self.both_zero = False
         self.surrendered = False
+        self.first_ronpa = 0
 
     # ------------------------------------------------------------ helpers
     def ev(self, name):
@@ -359,7 +362,7 @@ class Debate:
         return Result(win, kind, grade, self.rnd, self.ronpa_done, self.reversed, self.cracks,
                       self.denials, tuple(self.crossed), self.stalls, self.psych_card_used,
                       max(0.0, truth), self.rev_ronpa, self.comeback, self.catches, self.slips,
-                      self.guard_saved, self.dying, self.surrendered or kind == "confession")
+                      self.guard_saved, self.dying, self.surrendered or kind == "confession", self.first_ronpa)
 
     # ------------------------------------------------------------ endgame (7.4)
     def opp_endgame(self):
@@ -419,6 +422,8 @@ class Debate:
         op.combo = 0
         op.hp = 1.0
         if trigger == "ronpa":
+            if not self.ronpa_done:
+                self.first_ronpa = self.rnd
             self.ronpa_done = True
         if self.endgame_used:            # no last card left: this ends it
             if self.ronpa_done and trigger == "ronpa":
@@ -495,7 +500,8 @@ class Debate:
             if card.kind == "unfav":
                 self.slips += 1
                 self.catch_next = card.issue        # 6.5
-                return                               # ASSUMPTION-03
+                if not P.UNFAV_DAMAGE:
+                    return                           # ASSUMPTION-03 (V-01)
             if damage:
                 d = self.opp_dmg(act, card.issue)
                 pl.hp -= d
@@ -571,7 +577,8 @@ class Debate:
                     self.psych_card_used = True
                     for i in range(3):
                         self.psy[i] = min(100.0, self.psy[i] + self.weakness[i])
-                elif stmt is not None and stmt.psych:
+                elif stmt is not None and stmt.psych and not stmt.psych_done:
+                    stmt.psych_done = True                     # 8.1 (R-20): once per debate
                     for i in range(3):                         # scripted 心理作用 of this claim
                         self.psy[i] = max(0.0, min(100.0, self.psy[i] + stmt.psych[i]))
                 elif not soph and kind != "catch" and r.random() < self.sore:

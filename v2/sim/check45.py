@@ -127,8 +127,10 @@ def has_route(safe, claims, need):
     return best
 
 
-def check(path, all_sizes=False):
+def check(path, all_sizes=False, override=None):
     d, ev, cards, claims, appr, brk, errs = load(path)
+    if override:
+        d.update(override)
     need = d.get("ronpa_len", RONPA_LEN[d.get("stage", "mid")])
     carriable = [e["id"] for e in d["evidence"] if e.get("carriable", True)]
     limit = min(d["carry_limit"], len(carriable)) if d.get("carry_limit") is not None else len(carriable)

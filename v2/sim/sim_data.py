@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import random
+import re
 import statistics
 
 import params as P
@@ -37,7 +38,8 @@ EVENT_ALIASES = {"謊言被正論打掉": "lie_down_proper", "謊言被詭辯打
                  "事實被詭辯打掉": "fact_down_soph", "自己的反駁落空": "own_rebut_whiff",
                  "被打迷糊仗": "stalled", "成功打中玩家": "hit_player", "選項所剩無幾": "few_options",
                  "無辜者被牽連": "innocent", "說法觸及他的心結": "sore_spot", "說法觸及心結": "sore_spot",
-                 "玩家公開他的私事": "private", "公開私事": "private"}
+                 "玩家公開他的私事": "private", "公開私事": "private",
+                 "options_low": "few_options", "fooled": "stalled", "stalled_by_player": "stalled"}
 
 
 def pga(d, default=(0, 0, 0)):
@@ -53,6 +55,7 @@ def base_overrides(d, notes):
     per = opp.get("personality") or {}
     beh = opp.get("behavior") or {}
     arch = per.get("archetype") or opp.get("archetype") or "ordinary"
+    arch = re.sub(r"[（(].*?[）)]", "", arch).strip()          # 「自信的專家（改）」→ 自信的專家
     arch = ARCH_ALIASES.get(arch, arch)
     if arch not in P.ARCHETYPES:
         notes.append(f"unknown archetype {arch!r}; using ordinary")
@@ -68,9 +71,23 @@ def base_overrides(d, notes):
         o["start"] = pga(per["start"])
     if "threshold" in per:
         o["thr"] = pga(per["threshold"])
-    if "decay" in per:
-        o["decay"] = pga(per["decay"], (1, 1, 1))
-    em = per.get("event_mult") or {}
+    if "decay" in per:                    # amounts per round (8.1) → multiplier on DECAY
+        amt = pga(per["decay"], P.DECAY)
+        o["decay"] = tuple(amt[i] / P.DECAY[i] for i in range(3))
+    sc = per.get("mult") or per.get("scale")
+    if sc:
+        o["scale"] = pga(sc, (1, 1, 1))
+    em = dict(per.get("event_mult") or {})
+    for k, v in (per.get("exceptions") or {}).items():   # absolute increments → multipliers
+        key = EVENT_ALIASES.get(k, k)
+        if key not in P.EVENTS:
+            notes.append(f"exceptions {k!r} not recognised; ignored")
+            continue
+        base_ev = P.EVENTS[key]
+        amt = pga(v, base_ev)
+        em[key] = {"P": amt[0] / base_ev[0] if base_ev[0] else 1,
+                   "G": amt[1] / base_ev[1] if base_ev[1] else 1,
+                   "A": amt[2] / base_ev[2] if base_ev[2] else 1}
     if em:
         ov = dict(P.ARCHETYPES[arch]["override"])
         for k, v in em.items():
@@ -80,14 +97,19 @@ def base_overrides(d, notes):
             else:
                 notes.append(f"event_mult {k!r} not recognised; ignored")
         o["override"] = ov
-    if "rage_force_share" in per:
-        o["rage"] = per["rage_force_share"]
+    for k in ("rage_force_share", "rage_strong_ratio"):
+        if k in per:
+            o["rage"] = per[k]
     w = beh.get("weights")
     if isinstance(w, dict):
-        o["weights"] = (w.get("attack", 0), w.get("force", 0), w.get("rebut", 0), w.get("parry", 0))
+        g = lambda *ks: next((w[k] for k in ks if k in w), 0)
+        o["weights"] = (g("attack", "立論"), g("force", "強辯"), g("rebut", "反駁"), g("parry", "周旋"))
+    if beh.get("rules") or beh.get("play_order"):
+        notes.append("behavior.rules / play_order are read by people only; the sim uses its own two reaction rules (7 in README)")
     tc = beh.get("tell_clarity")
     if isinstance(tc, dict):
-        clar = (tc.get("clear", 0), tc.get("vague", 0), tc.get("disguise", 0))
+        g = lambda *ks: next((tc[k] for k in ks if k in tc), 0)
+        clar = (g("clear", "explicit"), g("vague"), g("disguise", "disguised"))
         tot = sum(clar) or 1
         o["clarity"] = tuple(x / tot for x in clar)
         o["disguise"] = clar[2] > 0
@@ -147,12 +169,25 @@ def main():
     ap.add_argument("--per", type=int, default=60, help="careful games per loadout (loadout spread)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--md", default=None)
+    ap.add_argument("--carry", type=int, default=None, help="override carry_limit")
+    ap.add_argument("--appraisals", type=int, default=None, help="override appraisal_limit")
+    ap.add_argument("--hp", type=float, default=None, help="override opponent hp")
+    ap.add_argument("--dmg", type=float, default=None, help="override opponent base_damage")
     a = ap.parse_args()
 
-    d, need, rows, errs = check(a.path)
+    ov = {}
+    if a.carry is not None:
+        ov["carry_limit"] = a.carry
+    if a.appraisals is not None:
+        ov["appraisal_limit"] = a.appraisals
+    d, need, rows, errs = check(a.path, override=ov or None)
     _, ev, cards, claims, appr, brk, _ = load(a.path)
     notes = []
     base = base_overrides(d, notes)
+    if a.hp is not None:
+        base["hp"] = a.hp
+    if a.dmg is not None:
+        base["opp_base"] = a.dmg
     psych_ev = {e["id"] for e in d["evidence"] if e.get("psych_card")}
     ranked = sorted(rows, key=score, reverse=True)
     top = ranked[:max(1, len(ranked) // 4)]
@@ -196,10 +231,10 @@ def main():
     if notes or errs:
         L += ["## 資料提示", ""] + [f"* {x}" for x in notes + errs] + [""]
     L += ["## 各策略", "",
-          "| 策略 | 勝率 | 平均回合 | 論破率 | 等級一 | 等級二 | 等級三 | 等級四 | 勝場中被反擊 | 論破後論敗 | 被逆論破 | 接話 | 說溜嘴 | 壓力越線 | 罪惡感越線 | 怒氣越線 | 真相度 |",
-          "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+          "| 策略 | 勝率 | 平均回合 | 首次論破回合 | 論破率 | 等級一 | 等級二 | 等級三 | 等級四 | 勝場中被反擊 | 論破後論敗 | 被逆論破 | 接話 | 說溜嘴 | 壓力越線 | 罪惡感越線 | 怒氣越線 | 真相度 |",
+          "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for pol, s in out_rows:
-        L.append(f"| {POLICY_ZH[pol]} | {pct(s['win'])} | {s['rounds']:.1f} | {pct(s['ronpa'])} | {pct(s['g1'])} | {pct(s['g2'])} | "
+        L.append(f"| {POLICY_ZH[pol]} | {pct(s['win'])} | {s['rounds']:.1f} | {s['first_ronpa']:.1f} | {pct(s['ronpa'])} | {pct(s['g1'])} | {pct(s['g2'])} | "
                  f"{pct(s['g3'])} | {pct(s['g4'])} | {pct(s['reversed_of_wins'])} | {pct(s['loss_after_ronpa'])} | {pct(s['rev_ronpa'])} | "
                  f"{pct(s['catch'])} | {pct(s['slip'])} | {pct(s['cross_p'])} | {pct(s['cross_g'])} | {pct(s['cross_a'])} | {pct(s['truth'])} |")
     ps = dict(out_rows)["psych"]
