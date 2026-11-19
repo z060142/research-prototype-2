@@ -10,16 +10,16 @@ All files are UTF-8 (CSV files have a BOM).
 | --- | --- | --- |
 | 1 | Everything the debate needs: claims, opponent cards, cut/refute/contradiction/link lines, reactions, tells, state lines, system templates, situational beats, warm-up (S04) and debate framing (S07) | done |
 | 2 | Investigation: evidence, hotspots, person notes, observations, appraisals, carry screen (S05/S06) | done |
-| 3 | Story scenes: S01–S03, S08–S11 | pending |
+| 3 | Story scenes: S01–S03, S08–S11, and scene headings `SCR_D01_Sxx_TITLE` | done |
 | 4 | English column for every row | pending |
 
 ## Files
 
 | File | Rows | Content |
 | --- | ---: | :--- |
-| script_d01.csv | 281 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
+| script_d01.csv | 353 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
 | evidence_d01.csv | 181 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
-| strings_d01.json | 462 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
+| strings_d01.json | 534 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
 | ui_strings_d01.csv | — | written by Sherefox遊戲企劃, not part of this build; not merged into strings_d01.json |
 
 ## ID scheme
@@ -50,7 +50,7 @@ All files are UTF-8 (CSV files have a BOM).
 | `SCENE_D01_<PLACE>` | investigation locations (PARLOR, STUDY, BASEMENT, ATTIC, BEDROOM, HALL) | evidence |
 | `PN_D01_<n>_NAME / _TEXT`, `OBS_D01_01_NAME / _TEXT` | person notes and observation: title / text | evidence |
 | `APR_D01_<nn>_LINE` / `_RESULT` | Arthur's appraisal line / the result note added to the evidence | script / evidence |
-| `SCR_D01_S<scene>_L<line>` | scene script lines (S04, S06, S07 so far) | script |
+| `SCR_D01_S<scene>_L<line>` / `SCR_D01_S<scene>_TITLE` | scene script lines (S01–S11) / scene headings. S05 has no lines of its own (its hotspots are `HS_D01_*`). S09 rows carry the newspaper version and condition in the note, S10 rows the notes version and condition | script |
 
 ## Templates and placeholders
 
@@ -61,6 +61,6 @@ All files are UTF-8 (CSV files have a BOM).
 
 ## Conventions
 
-* Outer 「」 around whole-line quotes are removed (the speaker column carries who speaks). Stage directions in （） are kept in zh-TW and become ( ) in en.
+* Outer 「」 around whole-line quotes are removed; quotes inside a sentence are kept (the speaker column carries who speaks). Stage directions in （） are kept in zh-TW and become ( ) in en.
 * Condition markers 〔…〕 from the chapter are moved to the note (`cond: …`).
 * en is empty until push 4.
