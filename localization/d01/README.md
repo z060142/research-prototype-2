@@ -17,9 +17,9 @@ All files are UTF-8 (CSV files have a BOM).
 
 | File | Rows | Content |
 | --- | ---: | :--- |
-| script_d01.csv | 353 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
+| script_d01.csv | 354 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
 | evidence_d01.csv | 181 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
-| strings_d01.json | 534 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
+| strings_d01.json | 535 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
 | ui_strings_d01.csv | — | written by Sherefox遊戲企劃, not part of this build; not merged into strings_d01.json |
 
 ## ID scheme
@@ -83,3 +83,7 @@ Other fixes:
 ## Check
 
 Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears in `v2/11_demo_chapter.md`. Every en string keeps its zh-TW placeholder set, and no en string is empty.
+
+## Changes after delivery
+
+* S06 (carry screen): Arthur's comments now play only through the 「問亞瑟的意見」 button (UI_V2_CARRY_ASK_ARTHUR), in the priority order given in each row's note. New line SCR_D01_S06_L012 (priority 7, repeatable). L010 still plays automatically. The old 「待使用者決定」 flag on L008 is gone.

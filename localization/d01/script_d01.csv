@@ -51,15 +51,16 @@ SCR_D01_S05_TITLE,（場景標題）,,蒐證,Investigation,scene heading
 SCR_D01_S06_TITLE,（場景標題）,,整理帶走的證物,Choose What to Bring,scene heading
 SCR_D01_S06_L001,系統,System,能帶進論戰的東西有限。留下的證物，可能落入對手手中。,You can only bring so much into a debate. Evidence you leave behind may fall into your opponent's hands.,cond: 首次出現此畫面
 SCR_D01_S06_L002,系統,System,可攜帶：{max} 件。已選：{n} 件。,You can bring {max}. Chosen: {n}.,TEMPLATE; same as UI_V2_CARRY_COUNT
-SCR_D01_S06_L003,亞瑟,Arthur,這個真的沒用。,This really is no use.,cond: 選到 E12 黑紗花圈
-SCR_D01_S06_L004,亞瑟,Arthur,Sherefox，我們是去論戰，不是去開沙龍。它真的要佔一個位子嗎？,"Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?",cond: 選到 C_D01_P1 通靈板
-SCR_D01_S06_L005,Sherefox,Sherefox,它很輕。而且，木頭會說話——如果有人肯聽的話。,"It's light. Besides, wood can talk, if someone's willing to listen.",cond: 選到 C_D01_P1 通靈板
-SCR_D01_S06_L006,亞瑟,Arthur,這是艾琳的私人物品。妳確定要帶上台？,This belongs to Irene. Are you sure you want to bring it out in front of everyone?,cond: 選到 E09 髮辮胸針
-SCR_D01_S06_L007,亞瑟,Arthur,一塊布……好吧，妳說了算。,"A piece of cloth... Well, you're the detective.",cond: 選到 E03 鏡子黑布
-SCR_D01_S06_L008,亞瑟,Arthur,鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。,Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it.,cond: 待使用者決定; cond: 未選 E05 萬用鑰匙圈
+SCR_D01_S06_L003,亞瑟,Arthur,這個真的沒用。,This really is no use.,"Ask Arthur, priority 3: E12 selected"
+SCR_D01_S06_L004,亞瑟,Arthur,Sherefox，我們是去論戰，不是去開沙龍。它真的要佔一個位子嗎？,"Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?","Ask Arthur, priority 2: talking board C_D01_P1 selected (followed by L005)"
+SCR_D01_S06_L005,Sherefox,Sherefox,它很輕。而且，木頭會說話——如果有人肯聽的話。,"It's light. Besides, wood can talk, if someone's willing to listen.",follows L004 immediately
+SCR_D01_S06_L006,亞瑟,Arthur,這是艾琳的私人物品。妳確定要帶上台？,This belongs to Irene. Are you sure you want to bring it out in front of everyone?,"Ask Arthur, priority 4: E09 selected"
+SCR_D01_S06_L007,亞瑟,Arthur,一塊布……好吧，妳說了算。,"A piece of cloth... Well, you're the detective.","Ask Arthur, priority 5: E03 selected"
+SCR_D01_S06_L008,亞瑟,Arthur,鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。,Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it.,"Ask Arthur, priority 1: E05 not selected"
 SCR_D01_S06_L009,系統,System,以下東西會留在宅邸：{list}。確定嗎？,These will be left at the house: {list}. Are you sure?,cond: 按下「確定」時; TEMPLATE; {list} = names of the items left behind
-SCR_D01_S06_L010,亞瑟,Arthur,警督說，我們沒帶走的東西，交給屋主保管。……屋主現在是塞德里克先生。,The Inspector says whatever we don't take goes into the keeping of the master of the house. ...Which is now Mr Cedric.,cond: 確定後，有證物留下時
-SCR_D01_S06_L011,亞瑟,Arthur,還有空位喔。少帶一樣，就少一張牌。,"There's still room, you know. One thing fewer means one card fewer.",cond: 按下「確定」時，已選少於 9 件; rule 4.5 only guarantees full loadouts
+SCR_D01_S06_L010,亞瑟,Arthur,警督說，我們沒帶走的東西，交給屋主保管。……屋主現在是塞德里克先生。,The Inspector says whatever we don't take goes into the keeping of the master of the house. ...Which is now Mr Cedric.,plays automatically after Confirm when items are left behind
+SCR_D01_S06_L011,亞瑟,Arthur,還有空位喔。少帶一樣，就少一張牌。,"There's still room, you know. One thing fewer means one card fewer.","Ask Arthur, priority 6: fewer than 9 selected (rule 4.5 only guarantees full loadouts)"
+SCR_D01_S06_L012,亞瑟,Arthur,就醫生和修錶匠的眼光，我挑不出毛病。……不過妳帶的東西裡，總有一兩樣是我看不懂、最後卻用上了的。,"To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using.","Ask Arthur, priority 7: nothing above matches, or all were already said this visit (repeatable)"
 SCR_D01_S07_TITLE,（場景標題）,,主論戰的開場與收尾,Main debate: opening and close,scene heading
 SCR_D01_S07_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),中午，靈堂。海德太太、艾琳、瑪莎、布里格斯都到了。警督站在門口，塞德里克坐在靈柩旁那張靠走廊的椅子上，像是他從沒離開過。,"Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it.",
 SCR_D01_S07_L002,塞德里克,Cedric,狐狸小姐，請吧。我很好奇，您要怎麼替一個帶著萬用鑰匙的鎖匠脫罪。,"Please, Miss Fox, go ahead. I am curious to see how you mean to clear a locksmith caught carrying skeleton keys.",

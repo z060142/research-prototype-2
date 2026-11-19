@@ -967,6 +967,10 @@
   "zh-TW": "還有空位喔。少帶一樣，就少一張牌。",
   "en": "There's still room, you know. One thing fewer means one card fewer."
  },
+ "SCR_D01_S06_L012": {
+  "zh-TW": "就醫生和修錶匠的眼光，我挑不出毛病。……不過妳帶的東西裡，總有一兩樣是我看不懂、最後卻用上了的。",
+  "en": "To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using."
+ },
  "SCR_D01_S07_TITLE": {
   "zh-TW": "主論戰的開場與收尾",
   "en": "Main debate: opening and close"
