@@ -310,12 +310,7 @@
       "breaks": [
         "L4"
       ],
-      "opp_refute": [
-        {
-          "via": "E07",
-          "line_id": "6.6-04C"
-        }
-      ]
+      "note": "sincere-but-wrong; flips to sophistry once he says the locksmith came back (06B refute or P07)"
     },
     {
       "id": "05A",
