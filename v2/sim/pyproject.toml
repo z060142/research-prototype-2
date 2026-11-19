@@ -1,0 +1,9 @@
+[project]
+name = "sherefox-v2-sim"
+version = "0.1.0"
+description = "Sherefox v2 debate rules simulation (v2/00_core_rules.md)"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+package = false
