@@ -10,13 +10,13 @@ CLM_D01_01A_SHORT,筒鎖完好，用真鑰匙開,"Lock intact, true key used","s
 CLM_D01_01A_LINE,筒鎖完好，連一點撬痕都沒有。打開它的，是真正的鑰匙。,"The lock is intact, not a single mark of forcing. Whoever opened it used a real key.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
 CLM_D01_01B,筒鎖被動過手腳,The lock was tampered with,claim short label; evidence E01 文件筒; issue 法
 CLM_D01_01B_SHORT,筒鎖被動過手腳,Lock was tampered with,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_01B"
-CLM_D01_01B_LINE,筒鎖確實被人動了手腳，但動手腳的不是來修鎖的布里格斯。,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01B_LINE,筒鎖確實被人動了手腳，但動手腳的不是來修鎖的布里格斯。,"Someone did tamper with that lock, yes. But not Briggs, who only came to mend it.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
 CLM_D01_01C,鎖芯裡沒有油,No oil in the lock,claim short label; evidence E01 文件筒; issue 法
 CLM_D01_01C_SHORT,鎖芯裡沒有油,No oil in the lock,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_01C"
-CLM_D01_01C_LINE,鎖芯裡乾乾淨淨，連一滴油都沒有，上過油的鑰匙根本沒碰過它。,That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it.,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01C_LINE,鎖芯裡乾乾淨淨，連一滴油都沒有，上過油的鑰匙根本沒碰過它。,The lock's workings are spotless. Not a drop of oil. No oiled key has ever touched them.,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
 CLM_D01_01D,鎖匠沒有能開鎖的東西,Locksmith had nothing to open it,claim short label; evidence E01 文件筒; issue 法
 CLM_D01_01D_SHORT,鎖匠沒有能開鎖的東西,Locksmith couldn't open it,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_01D"
-CLM_D01_01D_LINE,這把筒鎖沒問題，布里格斯修完也沒留備用鑰匙，他手上根本沒有能打開它的東西。,"It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01D_LINE,這把筒鎖沒問題，布里格斯修完也沒留備用鑰匙，他手上根本沒有能打開它的東西。,"There's nothing wrong with that lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
 CLM_D01_02A,座鐘在熄燈時重新走動,Clock restarted when the lights died,claim short label; evidence E02 座鐘; issue 機
 CLM_D01_02A_SHORT,座鐘在熄燈時重新走動,Clock restarted in the dark,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_02A"
 CLM_D01_02A_LINE,書房的座鐘原本停在九點四十分，卻在熄燈那三分鐘裡重新走動了。當時有人在書房裡，撞到了壁爐架。,"The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece.",claim spoken line (Sherefox); evidence E02 座鐘; issue 機
@@ -46,7 +46,7 @@ CLM_D01_05A_SHORT,萬用鑰匙全上了油,Every skeleton key is oiled,"short la
 CLM_D01_05A_LINE,布里格斯的萬用鑰匙每一把都上了油，不上油就轉不動。,"Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn.",claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
 CLM_D01_05B,萬用鑰匙打不開筒子,Skeleton keys can't open the tube,claim short label; evidence E05 萬用鑰匙; issue 法
 CLM_D01_05B_SHORT,萬用鑰匙打不開筒子,Keys can't open the tube,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_05B"
-CLM_D01_05B_LINE,這圈萬用鑰匙連普通的門鎖都很難開，根本打不開黃銅文件筒。,"Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube.",claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
+CLM_D01_05B_LINE,這圈萬用鑰匙連普通的門鎖都很難開，根本打不開黃銅文件筒。,This ring of skeleton keys struggles with an ordinary door lock. It could never open the brass tube.,claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
 CLM_D01_06A,鎖已修妥，沒留後門,"Lock mended, no back door left",claim short label; evidence E06 工作單; issue 法
 CLM_D01_06A_SHORT,鎖已修妥，沒留後門,"Lock mended, no back door","short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_06A"
 CLM_D01_06A_LINE,工作單上寫著換了新彈簧，當著主人的面試開三次，已經修妥。鎖修好了，沒有留後門。,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it.",claim spoken line (Sherefox); evidence E06 工作單; issue 法
@@ -79,7 +79,7 @@ CLM_D01_10A_SHORT,附錄讓你少了一半,Codicil halved your share,"short labe
 CLM_D01_10A_LINE,吸墨紙上印著附錄的反字：「將遺產之半數，贈予……」舊遺囑原本把遺產全留給你，這份附錄卻讓你少了一半。,"The blotter holds the codicil in mirror writing: ""half of my estate I bequeath to..."" The old will left you everything. This codicil cut your share in half.",claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
 CLM_D01_10B,最早看到附錄的人,First to see the codicil,claim short label; evidence E10 吸墨紙; issue 動
 CLM_D01_10B_SHORT,最早看到附錄的人,First to see the codicil,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_10B"
-CLM_D01_10B_LINE,附錄是海德先生臨終前幾天寫的。前天整理書房時，最早看到它的人就站在門口，不肯進去，卻一直待到整理完。,"Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done.",claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
+CLM_D01_10B_LINE,附錄是海德先生臨終前幾天寫的。前天整理書房時，最早看到它的人就站在門口，不肯進去，卻一直待到整理完。,"Mr Hyde wrote the codicil in his last days. When the study was tidied the day before yesterday, the first person to see it stood in the doorway, refused to come in, yet stayed until the tidying was done.",claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
 CLM_D01_11A,燈滅前，你的椅子就空了,Your chair was empty before dark,claim short label; evidence E11 艾琳的證詞; issue 機
 CLM_D01_11A_SHORT,燈滅前，你的椅子就空了,Empty chair before the dark,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_11A"
 CLM_D01_11A_LINE,艾琳說，燈滅之前，你的椅子就已經空了。,Irene says your chair was already empty before the lights went out.,claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
@@ -154,7 +154,7 @@ C_D01_P1_DESC,閣樓舊玩具箱裡的木製靈應盤，盒蓋寫著「1859，�
 OBS_D01_01_NAME,只有一枚的胸針,A one-of-a-kind brooch,觀察 title; found at 靈堂 HS05 海德太太
 OBS_D01_01_TEXT,海德太太說，她的髮辮胸針是老爺用自己的頭髮編的，「世上只有這一枚」。,"Mrs Hyde says her husband wove her hair brooch from his own hair: ""There is only one in all the world.""",觀察 text (notes page)
 PN_D01_1_NAME,懷錶鏈上的墜子,Charms on his watch chain,人物 title; found at 靈堂 HS03 塞德里克
-PN_D01_1_TEXT,塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色玻璃眼珠、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的迷信」。,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks"".",人物 text (notes page)
+PN_D01_1_TEXT,塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色玻璃眼珠、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的迷信」。,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin superstition"".",人物 text (notes page)
 PN_D01_2_NAME,白天的床頭燈,A bedside lamp by day,人物 title; found at 臥室 HS22 床頭燈
 PN_D01_2_TEXT,大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。,"In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night.",人物 text (notes page)
 PN_D01_3_NAME,別過臉的遺體照,Face turned from the photograph,人物 title; found at 靈堂 HS04 遺體照＋HS05 海德太太
@@ -170,7 +170,7 @@ HS_D01_01_DESC,靈柩兩旁排著六張椅子。最靠近走廊那張的椅墊�
 HS_D01_02_NAME,艾琳,Irene,hotspot name; yields E_D01_11 艾琳的證詞
 HS_D01_02_DESC,年輕女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套，本來就是黑的，可是指尖亮亮的，像沾了灰。」,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.""",hotspot description shown when inspected
 HS_D01_03_NAME,塞德里克,Mr Cedric,hotspot name; yields PN_D01_1 護身符
-HS_D01_03_DESC,塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色玻璃眼珠、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的迷信。」,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks.""",hotspot description shown when inspected
+HS_D01_03_DESC,塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色玻璃眼珠、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的迷信。」,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin superstition.""",hotspot description shown when inspected
 HS_D01_04_NAME,遺體照,Memorial photograph,hotspot name; yields PN_D01_3（前半）
 HS_D01_04_DESC,靈堂正中央掛著昨天拍的遺體照，全家人圍在亡者身旁。塞德里克站在最邊上，別過臉去，只拍到半張側臉。,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile.",hotspot description shown when inspected
 HS_D01_05_NAME,海德太太,Mrs Hyde,hotspot name; yields PN_D01_3（後半）、OBS_D01_01

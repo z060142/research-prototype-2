@@ -98,3 +98,4 @@ Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears i
   * "kitchen stove" everywhere.
   * 撬痕 is "mark of forcing" in both APR_D01_01_LINE and CLM_D01_01A_LINE.
   * HS_D01_14 and HS_D01_23 are now 書房書桌抽屜 / 臥室書桌抽屜 ("Study desk drawer" / "Bedroom desk drawer"), in the chapter as well.
+* zh-TW polish (design repo 244a216, notes in `polish_notes/`): 256 rows rewritten by the production session. strings_d01.json was regenerated from the CSVs, and the chapter's lines, including the untagged quotes in the §12 routes, now match the new text. English was changed only where the meaning moved (20 rows: SCR_D01_S02_L008, S03_L005, S03_L010, S03_L014, S06_L006, S08_L010, PN_D01_1_TEXT, HS_D01_03_DESC, CLM_D01_01B/01C/01D/05B/10B_LINE, EXCL_D01_06B_07A_SELL, REACT_D01_P1B, TELL_D01_PUSH_1, TELL_D01_HINT_REBUT, TELL_D01_HINT_LAST, BEAT_D01_REDCRACK_1, BEAT_D01_LASTSTAND_FAIL_1).
